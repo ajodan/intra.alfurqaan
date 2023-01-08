@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ekselmyi/
+    - /bin/cp -R intra.alfurqaan.my.id $DEPLOYPATH
+    
