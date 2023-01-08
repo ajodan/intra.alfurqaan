@@ -8,17 +8,17 @@ use App\Http\Requests\RekeningRequest as Request;
 
 
 use App\Models\Rekening;
-use App\Models\Nasabah;
+use App\Models\Jamaah;
 use DB;
 
 class RekeningController extends Controller
 {
     public function index()
-    {   
-        $rekening = Rekening::join('nasabah','rekening.kd_nasabah','=','nasabah.kd_nasabah')
-            ->select('rekening.*','nasabah.nm_nasabah','nasabah.kd_nasabah')
+    {
+        $rekening = Rekening::join('jamaah', 'rekening.kd_jamaah', '=', 'jamaah.kd_jamaah')
+            ->select('rekening.*', 'jamaah.nm_jamaah', 'jamaah.kd_jamaah')
             ->get();
-        return view('admin.rekening.index',compact('rekening'));
+        return view('admin.rekening.index', compact('rekening'));
     }
 
     public function create()
@@ -29,37 +29,37 @@ class RekeningController extends Controller
     public function store(Request $request)
     {
         Rekening::create($request->all());
-        return redirect()->route('admin.rekening.index')->with('success','Data berhasil ditambah');
+        return redirect()->route('admin.rekening.index')->with('success', 'Data berhasil ditambah');
     }
 
     public function show(Rekening $rekening)
     {
         $histori_transaksi = DB::table('transaksi')
-            ->where('no_rekening',$rekening->no_rekening)
+            ->where('no_rekening', $rekening->no_rekening)
             ->latest('waktu')
             ->get();
 
         $nasabah = DB::table('rekening')
-            ->where('rekening.id',$rekening->id)->join('nasabah','rekening.kd_nasabah','=','nasabah.kd_nasabah')
+            ->where('rekening.id', $rekening->id)->join('jamaah', 'rekening.kd_jamaah', '=', 'jamaah.kd_jamaah')
             ->first();
 
-        return view('admin.rekening.show',compact('rekening','nasabah','histori_transaksi'));
+        return view('admin.rekening.show', compact('rekening', 'jamaah', 'histori_transaksi'));
     }
 
     public function edit(Rekening $rekening)
     {
-        return view('admin.rekening.edit',compact('rekening'));
+        return view('admin.rekening.edit', compact('rekening'));
     }
 
     public function update(DefaultRequest $request, Rekening $rekening)
     {
         $rekening->update($request->all());
-        return redirect()->route('admin.rekening.index')->with('success','Data berhasil diupdate');
+        return redirect()->route('admin.rekening.index')->with('success', 'Data berhasil diupdate');
     }
 
     public function destroy(Rekening $rekening)
     {
         $rekening->delete();
-        return redirect()->route('admin.rekening.index')->with('success','Data berhasil dihapus');
+        return redirect()->route('admin.rekening.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-    'title' => 'Dashboard',
-    'contentTitle' => 'Dashboard',
+'title' => 'Dashboard',
+'contentTitle' => 'Dashboard',
 ])
 
 @push('css')
@@ -14,35 +14,38 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="row ml-2">
-					<i class="fas fa-fw fa-users fa-3x"> </i> <h4 class="ml-4 mt-3"> @count('users') USERS</h4>	
+					<i class="fas fa-fw fa-users fa-3x"> </i>
+					<h4 class="ml-4 mt-3"> @count('users') PENGGUNA</h4>
 				</div>
-				 
+
 			</div>
-			<div class="card-footer"><a href="{{ route('admin.user.index') }}">More Info</a></div>
-		</div>	
+			<div class="card-footer"><a href="{{ route('admin.user.index') }}">Info Detail</a></div>
+		</div>
 	</div>
 
 	<div class="col-lg-4">
 		<div class="card">
 			<div class="card-body">
 				<div class="row ml-2">
-					<i class="fas fa-fw fa-user-tie fa-3x"> </i> <h4 class="ml-4 mt-3"> @count('pegawai') PEGAWAI</h4>	
+					<i class="fas fa-fw fa-user-tie fa-3x"> </i>
+					<h4 class="ml-4 mt-3"> @count('pengurus') PEGAWAI</h4>
 				</div>
-				 
+
 			</div>
-			<div class="card-footer"><a href="{{ route('admin.pegawai.index') }}">More Info</a></div>
-		</div>	
+			<div class="card-footer"><a href="{{ route('admin.pengurus.index') }}">Info Detail</a></div>
+		</div>
 	</div>
 
 	<div class="col-lg-4">
 		<div class="card">
 			<div class="card-body">
 				<div class="row ml-2">
-					<i class="fas fa-fw fa-user fa-3x"> </i> <h4 class="ml-4 mt-3"> @count('nasabah') NASABAH</h4>	
-				</div> 
+					<i class="fas fa-fw fa-user fa-3x"> </i>
+					<h4 class="ml-4 mt-3"> @count('jamaah') JAMAAH</h4>
+				</div>
 			</div>
-			<div class="card-footer"><a href="{{ route('admin.nasabah.index') }}">More Info</a></div>
-		</div>	
+			<div class="card-footer"><a href="{{ route('admin.jamaah.index') }}">Info Detail</a></div>
+		</div>
 	</div>
 </div>
 
@@ -65,25 +68,27 @@
 						</form>
 					</div>
 					@endif
-				</div>	
+				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 
 	<div class="col-lg-4">
 		<div class="card">
 			<div class="card-header bg-primary text-white">Aksi Cepat</div>
 			<div class="card-body">
 				<div class="list-group">
-				  <a href="{{ route('transfer.index') }}" class="list-group-item list-group-item-action">Transfer</a>
-				  
-				  <a href="{{ route('tarik.index') }}" class="list-group-item list-group-item-action">Tarik</a>
-				
-				  <a href="{{ route('setor.index') }}" class="list-group-item list-group-item-action">Setor</a>
+					<a href="{{ route('transfer.index') }}" class="list-group-item list-group-item-action">Transfer</a>
+
+					<a href="{{ route('tarik.index') }}" class="list-group-item list-group-item-action">Tarik</a>
+
+					<a href="{{ route('setor.index') }}" class="list-group-item list-group-item-action">Setor</a>
+
+					<a href="{{ route('saldo.index') }}" class="list-group-item list-group-item-action">Saldo</a>
 				</div>
-			</div>	
+			</div>
 		</div>
-	</div>	
+	</div>
 </div>
 @stop
 

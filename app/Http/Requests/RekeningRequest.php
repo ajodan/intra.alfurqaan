@@ -26,7 +26,7 @@ class RekeningRequest extends FormRequest
         return [
             'kd_nasabah' => 'required',
             'no_rekening' => 'required|unique:rekening',
-            'pin' => 'required',  
+            'pin' => 'required',
         ];
     }
 }

@@ -4,71 +4,71 @@ namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Transfer;
 use Illuminate\Support\Facades\DB;
 
 class TransferController extends Controller
 {
-    public function index()
-    {
-    	$histori_transfer = $this->historiTransfer();
-    	$nasabah = $this->rekeningNasabah();
-    	return view('transaksi.transfer.index',compact('nasabah','histori_transfer'));
-    }
+	public function index()
+	{
+		$histori_transfer = $this->historiTransfer();
+		$jamaah = $this->rekeningJamaah();
+		return view('transaksi.transfer.index', compact('jamaah', 'histori_transfer'));
+	}
 
-    public function historiTransfer()
-    {
-    	$histori_transfer = DB::table('transfer')
-    	->join('transaksi',function($join){
-			$join->on('transaksi.id','=','transfer.id_transaksi')
-				->join('rekening','rekening.no_rekening','=','transaksi.no_rekening')
-				->join('nasabah','nasabah.kd_nasabah','=','rekening.kd_nasabah');
-    	})->latest('transfer.id_transfer')->get();
+	public function historiTransfer()
+	{
+		$histori_transfer = DB::table('transfer')
+			->join('transaksi', function ($join) {
+				$join->on('transaksi.id', '=', 'transfer.id_transaksi')
+					->join('rekening', 'rekening.no_rekening', '=', 'transaksi.no_rekening')
+					->join('jamaah', 'jamaah.kd_jamaah', '=', 'rekening.kd_jamaah');
+			})->latest('transfer.id_transfer')->get();
 
-    	return $histori_transfer;
-    }
+		return $histori_transfer;
+	}
 
-    private function rekeningNasabah()
-    {
-    	$nasabah = DB::table('nasabah')->join('rekening',function($join){
-			$join->on('nasabah.kd_nasabah','=','rekening.kd_nasabah')
-				->select('nasabah.nm_nasabah','rekening.no_rekening');
+	private function rekeningJamaah()
+	{
+		$jamaah = DB::table('jamaah')->join('rekening', function ($join) {
+			$join->on('jamaah.kd_jamaah', '=', 'rekening.kd_jamaah')
+				->select('jamaah.nm_jamaah', 'rekening.no_rekening');
 		})->get();
 
-		return $nasabah;
-    }
+		return $jamaah;
+	}
 
-    public function store(Request $request)
-    {
+	public function store(Request $request)
+	{
 
 		//pengirim
 		$pengirim = DB::table('rekening')
-			->where('no_rekening',$request->no_rekening)
+			->where('no_rekening', $request->no_rekening)
 			->first();
 
 		//penerima
 		$penerima = DB::table('rekening')
-			->where('no_rekening',$request->rek_tujuan)
+			->where('no_rekening', $request->rek_tujuan)
 			->first();
 
 		//cek penerima
 		$cek_penerima = DB::table('rekening')
-			->where('no_rekening',$request->rek_tujuan);
+			->where('no_rekening', $request->rek_tujuan);
 
-        if ($cek_penerima->count() < 1) {
-            return back()->with('error','Transfer Gagal , Rekening tujuan tidak terdaftar');
-        }
-        
-        if ($request->rek_tujuan == $request->no_rekening) {
-            return back()->with('error','Transfer Gagal , Rekening tujuan tidak valid');
-        }
+		if ($cek_penerima->count() < 1) {
+			return back()->with('error', 'Transfer Gagal , Rekening tujuan tidak terdaftar');
+		}
 
-        if ($request->nominal < 1) {
-        	return back()->with('error','Transfer Gagal , Nominal tidak valid');		
-        }
+		if ($request->rek_tujuan == $request->no_rekening) {
+			return back()->with('error', 'Transfer Gagal , Rekening tujuan tidak valid');
+		}
 
-        if ($pengirim->saldo >= 50000) {
-			DB::transaction(function() use($request,$pengirim,$penerima){
+		if ($request->nominal < 1) {
+			return back()->with('error', 'Transfer Gagal , Nominal tidak valid');
+		}
+
+		if ($pengirim->saldo >= 50000) {
+			DB::transaction(function () use ($request, $pengirim, $penerima) {
 				DB::table('transaksi')->insert([
 					'no_rekening' => $request->no_rekening,
 					'nominal' => $request->nominal,
@@ -78,10 +78,10 @@ class TransferController extends Controller
 
 				//dapatkan transakssi terakhir berdasarkan id
 				$last_transaksi = DB::table('transaksi')
-					->where('jns_transaksi','transfer')
+					->where('jns_transaksi', 'transfer')
 					->latest('id')
-				->first();
-				
+					->first();
+
 				DB::table('transfer')->insert([
 					'jns_pembayaran' => $request->jns_pembayaran,
 					'keterangan' => $request->keterangan,
@@ -91,22 +91,29 @@ class TransferController extends Controller
 
 				//update saldo pegirim
 				DB::table('rekening')
-					->where('no_rekening',$request->no_rekening)
+					->where('no_rekening', $request->no_rekening)
 					->update([
 						'saldo' => $pengirim->saldo - $request->nominal,
 					]);
 
 				//update saldo penerima
 				DB::table('rekening')
-					->where('no_rekening',$request->rek_tujuan)
+					->where('no_rekening', $request->rek_tujuan)
 					->update([
 						'saldo' => $penerima->saldo + $request->nominal,
 					]);
 			});
-			
-			return back()->with('success','Transfer berhasil dilakukan');
-		}else{
-        	return back()->with('error','Transfer gagal dilakukan , saldo pengirim tidak mencukupi');
-        }
-    }
+
+			return back()->with('success', 'Transfer berhasil dilakukan');
+		} else {
+			return back()->with('error', 'Transfer gagal dilakukan , saldo pengirim tidak mencukupi');
+		}
+	}
+
+	public function destroy(Transfer $transfer)
+	{
+		// event(new UserDeleteEvent($user));
+		$transfer->delete();
+		return redirect()->route('transfer.index')->with('success', 'Data Transfer berhasil dihapus');
+	}
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\TruncateController;
 
+
 // Operator namespace
 use App\Http\Controllers\Operator\OperatorController;
 
@@ -25,9 +26,24 @@ use App\Http\Controllers\User\ChangePasswordController;
 
 //Transaksi namespace
 use App\Http\Controllers\Transaksi\TransaksiController;
+use App\Http\Controllers\Transaksi\SaldoController;
 use App\Http\Controllers\Transaksi\TransferController;
 use App\Http\Controllers\Transaksi\TarikController;
 use App\Http\Controllers\Transaksi\SetorController;
+
+//Kasmasjid namespace
+use App\Http\Controllers\Kasmasjid\KasmasjidController;
+use App\Http\Controllers\Kasmasjid\SaldokasController;
+use App\Http\Controllers\Kasmasjid\KeluarController;
+use App\Http\Controllers\Kasmasjid\MasukController;
+use App\Http\Controllers\Kasmasjid\LaporankasController;
+use App\Http\Controllers\Kasmasjid\LaporansaldokasController;
+
+use App\Http\Controllers\Kajian\TopikkajianController;
+
+use App\Http\Controllers\Kasmasjid\JenistransaksiController;
+use App\Http\Controllers\Kegiatan\JeniskegiatanController;
+use App\Http\Controllers\Kegiatan\MubalighController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,112 +57,178 @@ use App\Http\Controllers\Transaksi\SetorController;
 */
 
 //Route Group Auth
-Route::group(['namespace' => 'Auth'],function(){
-	Route::view('/','auth.login')->middleware('guest');
-	Route::view('/login','auth.login')->name('login')->middleware('guest');
-	Route::post('/login',[LoginController::class,'authenticated'])->name('login.post');
+Route::group(['namespace' => 'Auth'], function () {
+	Route::view('/', 'auth.login')->middleware('guest');
+	Route::view('/login', 'auth.login')->name('login')->middleware('guest');
+	Route::post('/login', [LoginController::class, 'authenticated'])->name('login.post');
 
-	Route::post('/logout',function(){
+	Route::post('/logout', function () {
 		Auth::logout();
 		return redirect()->to('login');
 	})->name('logout');
 
-	Route::view('/forgot-password','auth.forgot-password');
+	Route::view('/forgot-password', 'auth.forgot-password');
 });
 
 // Route Group Admin
-Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth','can:admin']],function(){
-	Route::name('admin.')->group(function(){
-	
-		Route::get('/dashboard',[AdminController::class,'index'])->name('index');
-		Route::get('/',[AdminController::class,'index']);
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'can:admin']], function () {
+	Route::name('admin.')->group(function () {
 
-		Route::get('/laporan',[LaporanController::class,'index'])->name('laporan.index');
-		Route::post('/laporan/transaksi',[LaporanController::class,'transaksi'])->name('laporan.transaksi');
+		Route::get('/dashboard', [AdminController::class, 'index'])->name('index');
+		Route::get('/', [AdminController::class, 'index']);
 
-		Route::delete('truncate/transaksi',[TruncateController::class,'transaksi'])->name('truncate.transaksi');
-		
+		Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+		Route::post('/laporan/transaksi', [LaporanController::class, 'transaksi'])->name('laporan.transaksi');
+		Route::delete('truncate/transaksi', [TruncateController::class, 'transaksi'])->name('truncate.transaksi');
+
 		//User Resource
-		Route::resource('user','UserController');
-		Route::resource('pegawai','PegawaiController');
-		Route::resource('nasabah','NasabahController');
-		Route::resource('rekening','RekeningController');
-				
+		Route::resource('user', 'UserController');
+		Route::resource('level', 'LevelController');
+		Route::resource('jabatan', 'JabatanController');
+		Route::resource('pengurus', 'PengurusController');
+		Route::resource('pegawai', 'PegawaiController');
+		Route::resource('nasabah', 'NasabahController');
+		Route::resource('jamaah', 'JamaahController');
+		Route::resource('rekening', 'RekeningController');
+		Route::resource('peranmubaligh', 'PeranmubalighController');
+		Route::resource('yatimduafa', 'YatimduafaController');
+
 		//Generate PDF 
-		Route::get('/pdf/user/export-pdf','PdfController@exportPdfUser')->name('pdf.export-pdf-user');
-		Route::get('/pdf/user/print-pdf','PdfController@printPdfUser')->name('pdf.print-pdf-user');
+		Route::get('/pdf/user/export-pdf', 'PdfController@exportPdfUser')->name('pdf.export-pdf-user');
+		Route::get('/pdf/user/print-pdf', 'PdfController@printPdfUser')->name('pdf.print-pdf-user');
 
 		//Generate Excel 
-		Route::get('/excel/user/export-excel','ExcelController@exportExcelUser')->name('excel.export-excel-user');
-		Route::post('/excel/user/import-excel','ExcelController@importExcelUser')->name('excel.import-excel-user');
+		Route::get('/excel/user/export-excel', 'ExcelController@exportExcelUser')->name('excel.export-excel-user');
+		Route::post('/excel/user/import-excel', 'ExcelController@importExcelUser')->name('excel.import-excel-user');
 	});
 });
 
-Route::group(['middleware' => 'can:operator','prefix' => 'operator'],function(){
-	Route::name('operator.')->group(function(){
-		Route::resource('nasabah','Admin\NasabahController');
-		Route::resource('rekening','Admin\RekeningController');
+Route::group(['middleware' => 'can:operator', 'prefix' => 'operator'], function () {
+	Route::name('operator.')->group(function () {
+		Route::resource('nasabah', 'Admin\NasabahController');
+		Route::resource('rekening', 'Admin\RekeningController');
 	});
 });
 
 // Route Group Operator
-Route::group(['namespace' => 'Operator','prefix' => 'operator','middleware' => ['can:operator']],function(){
-	Route::name('operator.')->group(function(){
+Route::group(['namespace' => 'Operator', 'prefix' => 'operator', 'middleware' => ['can:operator']], function () {
+	Route::name('operator.')->group(function () {
 
-		Route::get('/',[OperatorController::class,'index'])->name('index');
-
+		Route::get('/', [OperatorController::class, 'index'])->name('index');
 	});
 });
 
-// Route Group Nasabah
-Route::group(['namespace' => 'Nasabah','prefix' => 'nasabah','middleware' => ['can:nasabah']],function(){
-	Route::name('nasabah.')->group(function(){
+// Route Group Jamaah
+Route::group(['namespace' => 'Jamaah', 'prefix' => 'jamaah', 'middleware' => ['can:jamaah']], function () {
+	Route::name('jamaah.')->group(function () {
 
-		Route::get('/',[NasabahController::class,'index'])->name('index');
+		Route::get('/', [JamaahController::class, 'index'])->name('index');
 
-		Route::get('/transfer',[NasabahTransferController::class,'index'])->name('transfer.index');
-		Route::post('/transfer',[NasabahTransferController::class,'store'])->name('transfer.store');
-		Route::get('/histori-transfer',[NasabahTransferController::class,'historiTransfer'])->name('transfer.histori');
+		Route::get('/transfer', [JamaahTransferController::class, 'index'])->name('transfer.index');
+		Route::post('/transfer', [JamaahTransferController::class, 'store'])->name('transfer.store');
+		Route::get('/histori-transfer', [JamaahTransferController::class, 'historiTransfer'])->name('transfer.histori');
 
-		Route::post('/laporan/transfer-keluar',[NasabahLaporanController::class,'transferKeluar'])->name('laporan.transfer-keluar');
+		Route::post('/laporan/transfer-keluar', [NasabahLaporanController::class, 'transferKeluar'])->name('laporan.transfer-keluar');
 	});
 });
 
 //Route Group User
-Route::group(['namespace' => 'User','prefix' => 'user','middleware' => 'auth'],function(){
-	Route::name('user.')->group(function(){
+Route::group(['namespace' => 'User', 'prefix' => 'user', 'middleware' => 'auth'], function () {
+	Route::name('user.')->group(function () {
 		//Home
-		Route::get('/home',[HomeController::class,'index'])->name('home');
+		Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 		//Profile	
-		Route::get('/profile',[ProfileController::class,'index'])->name('profile.index');
-		Route::patch('/profile',[ProfileController::class,'update'])->name('profile.update');
-		
+		Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+		Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 		//Ubah Password
-		Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change-password.index');
-		Route::patch('/change-password',[ChangePasswordController::class,'update'])->name('change-password.update');
+		Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
+		Route::patch('/change-password', [ChangePasswordController::class, 'update'])->name('change-password.update');
 	});
 });
 
 //Route Group Transaksi 
-Route::group(['prefix' => 'transaksi','middleware' => ['auth','can:operator']],function(){
-	Route::namespace('Transaksi')->group(function(){
+Route::group(['prefix' => 'transaksi', 'middleware' => ['auth', 'can:bmm']], function () {
+	Route::namespace('Transaksi')->group(function () {
 
-		Route::get('/',[TransaksiController::class,'index'])->name('transaksi.index');
-		Route::post('/',[TransaksiController::class,'store'])->name('transaksi.store');
-		Route::post('/generate-pdf',[LaporanController::class,'transaksi'])->name('transaksi.generate-pdf');
+		Route::get('/', [TransaksiController::class, 'index'])->name('transaksi.index');
+		Route::post('/', [TransaksiController::class, 'store'])->name('transaksi.store');
+		Route::post('/generate-pdf', [LaporanController::class, 'transaksi'])->name('transaksi.generate-pdf');
 
 		//Transfer
-		Route::get('/transfer',[TransferController::class,'index'])->name('transfer.index');
-		Route::post('/transfer',[TransferController::class,'store'])->name('transfer.store');
+		Route::get('/transfer', [TransferController::class, 'index'])->name('transfer.index');
+		Route::post('/transfer', [TransferController::class, 'store'])->name('transfer.store');
+		Route::delete('/transfer', [TransferController::class, 'destroy'])->name('transfer.destroy');
 
 		//Setor
-		Route::get('/setor',[SetorController::class,'index'])->name('setor.index');
-		Route::post('/setor',[SetorController::class,'store'])->name('setor.store');
+		Route::get('/setor', [SetorController::class, 'index'])->name('setor.index');
+		Route::post('/setor', [SetorController::class, 'store'])->name('setor.store');
+		Route::delete('/setor', [SetorController::class, 'destroy'])->name('setor.destroy');
 
-		//Setor
-		Route::get('/tarik',[TarikController::class,'index'])->name('tarik.index');
-		Route::post('/tarik',[TarikController::class,'store'])->name('tarik.store');
+		//Tarik
+		Route::get('/tarik', [TarikController::class, 'index'])->name('tarik.index');
+		Route::post('/tarik', [TarikController::class, 'store'])->name('tarik.store');
 
+		//Saldo
+		Route::get('/saldo', [SaldoController::class, 'index'])->name('saldo.index');
+		Route::post('/saldo', [SaldoController::class, 'store'])->name('saldo.store');
+
+		Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+		Route::post('/laporan/transaksi', [LaporanController::class, 'transaksi'])->name('laporan.transaksi');
+		Route::delete('truncate/transaksi', [TruncateController::class, 'transaksi'])->name('truncate.transaksi');
+	});
+});
+
+//Route Group Kasmasjid 
+Route::group(['prefix' => 'kasmasjid', 'middleware' => ['auth', 'can:bendahara']], function () {
+	Route::namespace('Kasmasjid')->group(function () {
+
+		Route::get('/', [KasmasjidController::class, 'index'])->name('kasmasjid.index');
+		Route::post('/', [KasmasjidController::class, 'store'])->name('kasmasjid.store');
+		Route::post('/generate-pdf', [LaporankasController::class, 'kasmasjid'])->name('kasmasjid.generate-pdf');
+
+		//Masuk
+		Route::get('/masuk', [MasukController::class, 'index'])->name('masuk.index');
+		Route::post('/masuk', [MasukController::class, 'store'])->name('masuk.store');
+
+
+		//Keluar
+		Route::get('/keluar', [KeluarController::class, 'index'])->name('keluar.index');
+		Route::post('/keluar', [KeluarController::class, 'store'])->name('keluar.store');
+
+		//Saldo
+		Route::get('/saldokas', [SaldokasController::class, 'index'])->name('saldokas.index');
+		Route::post('/saldokas', [SaldokasController::class, 'store'])->name('saldokas.store');
+		Route::post('/saldokas-pdf', [LaporansaldokasController::class, 'kasmasjid'])->name('saldokas.saldokas-pdf');
+
+
+		//Jenis Transaksi
+		Route::resource('jenistransaksi', 'JenistransaksiController');
+	});
+});
+
+//Route Group Kegiatan 
+Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:ibadah']], function () {
+	Route::namespace('Kegiatan')->group(function () {
+
+		//Jenis Kegiatan
+		Route::resource('jeniskegiatan', 'JeniskegiatanController');
+		//Mubaligh
+		Route::resource('mubaligh', 'MubalighController');
+
+		//Kegiatan
+		Route::resource('kegiatan', 'KegiatanController');
+	});
+});
+
+//Route Group Kajian 
+Route::group(['prefix' => 'kajian', 'middleware' => ['auth', 'can:ibadah']], function () {
+	Route::namespace('Kajian')->group(function () {
+
+		//Topik Kajian
+		Route::resource('topikkajian', 'TopikkajianController');
+		//Kajian
+		Route::resource('kajian', 'KajianController');
 	});
 });
