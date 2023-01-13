@@ -37,6 +37,7 @@
             </div>
 
             <div class="form-group">
+<<<<<<< HEAD
                 <img src="{{ url('storage/Photo/'.$item->photo) }}" style="height: 300px; width: 250px;">
             </div>
             <div class="form-group">
@@ -53,6 +54,13 @@
 
             <div class="form-group">
                 <label for="peranmubaligh_id" class="">Peran Mubaligh</label>
+=======
+                <img src="{{ url('Photo/'.$item->photo) }}" style="height: 300px; width: 250px;">
+            </div>
+
+            <div class="form-group">
+                <label for="peranmubaligh_id" class="">peranmubaligh_id</label>
+>>>>>>> 431a6504f8ccf8df1c7ef6d3f7d3c7864af47da3
                 <div class="">
                     <select id="peranmubaligh_id" name="peranmubaligh_id" class="form-control">
                         @foreach ($peranmubaligh as $item1)

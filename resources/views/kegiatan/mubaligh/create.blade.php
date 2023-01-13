@@ -52,15 +52,21 @@
             </div>
 
             <div class="form-group">
+<<<<<<< HEAD
             <label for="profil">Profil Mubaligh/Ustadz</label>
             <div class="form-group">
+=======
+>>>>>>> 431a6504f8ccf8df1c7ef6d3f7d3c7864af47da3
                 <textarea name="profil" id="profil" rows="20" cols="130"></textarea>
                 <script>
                     // Replace the <textarea id="editor1"> with a CKEditor
                     // instance, using default configuration.
                     CKEDITOR.replace('profil');
                 </script>
+<<<<<<< HEAD
                 </div>
+=======
+>>>>>>> 431a6504f8ccf8df1c7ef6d3f7d3c7864af47da3
             </div>
             <div class="form-group">
                 <label>Peran Sebagai</label>
