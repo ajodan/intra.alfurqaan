@@ -30,6 +30,10 @@ use App\Http\Controllers\Transaksi\SaldoController;
 use App\Http\Controllers\Transaksi\TransferController;
 use App\Http\Controllers\Transaksi\TarikController;
 use App\Http\Controllers\Transaksi\SetorController;
+use App\Http\Controllers\Transaksi\KasbmmController;
+use App\Http\Controllers\Transaksi\JenistransaksibmmController;
+use App\Http\Controllers\Transaksi\MasukbmmController;
+use App\Http\Controllers\Transaksi\LaporankasbmmController;
 
 //Kasmasjid namespace
 use App\Http\Controllers\Kasmasjid\KasmasjidController;
@@ -154,7 +158,7 @@ Route::group(['prefix' => 'transaksi', 'middleware' => ['auth', 'can:bmm']], fun
 
 		Route::get('/', [TransaksiController::class, 'index'])->name('transaksi.index');
 		Route::post('/', [TransaksiController::class, 'store'])->name('transaksi.store');
-		Route::post('/generate-pdf', [LaporanController::class, 'transaksi'])->name('transaksi.generate-pdf');
+		Route::post('/bmm-generate-pdf', [LaporanController::class, 'transaksi'])->name('transaksi.generate-pdf');
 
 		//Transfer
 		Route::get('/transfer', [TransferController::class, 'index'])->name('transfer.index');
@@ -177,6 +181,17 @@ Route::group(['prefix' => 'transaksi', 'middleware' => ['auth', 'can:bmm']], fun
 		Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 		Route::post('/laporan/transaksi', [LaporanController::class, 'transaksi'])->name('laporan.transaksi');
 		Route::delete('truncate/transaksi', [TruncateController::class, 'transaksi'])->name('truncate.transaksi');
+
+		Route::get('/kasbmm', [KasbmmController::class, 'index'])->name('kasbmm.index');
+		// Route::post('/', [KasbmmController::class, 'store'])->name('kasbmm.store');
+		Route::post('/generate-pdf', [LaporankasbmmController::class, 'kasbmm'])->name('kasbmm.generate-pdf');
+
+		//Masuk
+		Route::get('/masukbmm', [MasukbmmController::class, 'index'])->name('masukbmm.index');
+		Route::post('/masukbmm', [MasukbmmController::class, 'store'])->name('masukbmm.store');
+
+		//Jenis Transaksi
+		Route::resource('jenistransaksibmm', 'JenistransaksibmmController');
 	});
 });
 

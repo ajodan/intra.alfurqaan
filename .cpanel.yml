@@ -1,6 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ekselmyi/
-    - /bin/cp -R intra.alfurqaan.my.id $DEPLOYPATH
+    - export DEPLOYPATH=/home/ekselmyi/intra.alfurqaan.my.id
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R resources $DEPLOYPATH
     

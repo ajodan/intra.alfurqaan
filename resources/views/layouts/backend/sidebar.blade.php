@@ -45,7 +45,25 @@
                 </li>
                 <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
                     <a href="{{ route('laporan.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Laporan</span></a>
-                </li>                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? 'active' : '' }}">
+                </li>
+
+                <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-menu-caption">
+                    <label>Menu Kas BMM</label>
+                </li>
+
+                <li class="nav-item {{ Request::segment(1) == 'kasbmm' ? 'active' : '' }}">
+                    <a href="{{ route('kasbmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
+                </li>
+
+                <li class="nav-item {{ Request::segment(1) == 'jenistransaksibmm' ? 'active' : '' }}">
+                    <a href="{{ route('jenistransaksibmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
+                </li>
+
+                <li class="nav-item {{ Request::is('bendahara') ? 'active' : '' }} pcoded-menu-caption">
+                    <label>Menu Kas Masjid</label>
+                </li>
+
+                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? 'active' : '' }}">
                     <a href="{{ route('kasmasjid.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
                 <li class="nav-item {{ Request::segment(1) == 'jenistransaksi' ? 'active' : '' }}">
