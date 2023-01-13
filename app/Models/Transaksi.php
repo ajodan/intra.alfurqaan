@@ -14,11 +14,11 @@ class Transaksi extends Model
     protected $table = 'transaksi';
 
     protected $fillable = [
-    	'waktu','nominal','jns_transaksi','no_rekening',
+        'waktu', 'nominal', 'jns_transaksi', 'no_rekening', 'created_at',
     ];
 
     public function rekening()
     {
-    	return $this->belongsTo(Rekening::class);
+        return $this->belongsTo(Rekening::class);
     }
 }

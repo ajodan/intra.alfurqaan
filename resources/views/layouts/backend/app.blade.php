@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <title>TABUNGAN - {{ $title ?? '' }}</title>
+    <title>INTRA AL-FURQAAN - {{ $title ?? '' }}</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Web tabungan siswa , Dibuat dengan laravel-8" />
-    <meta name="keywords" content="web app,laravel,school"/>
-    <meta name="author" content="Rahmat Hidayatullah"/>
+    <meta name="description" content="Web Intra Masjid, Dibuat dengan laravel-8" />
+    <meta name="keywords" content="web app,laravel,school" />
+    <meta name="author" content="Eksel Corp" />
 
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('templates/backend/datta-lite') }}/assets/images/favicon.ico" type="image/x-icon">
@@ -76,4 +76,5 @@
     <script src="{{ asset('templates/backend/datta-lite') }}/assets/js/pcoded.min.js"></script>
     @stack('js')
 </body>
+
 </html>

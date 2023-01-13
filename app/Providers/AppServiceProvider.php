@@ -19,7 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 
     /**
@@ -30,38 +29,38 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //Authorization
-        Gate::define('admin',function($user){
+        Gate::define('admin', function ($user) {
             return $user->level == 'admin';
         });
 
-        Gate::define('operator',function($user){
-            return $user->level == 'operator';
+        Gate::define('bmm', function ($user) {
+            return $user->level == 'bmm';
         });
-        
-        Gate::define('nasabah',function($user){
-            return $user->level == 'nasabah';
+
+        Gate::define('jamaah', function ($user) {
+            return $user->level == 'jamaah';
         });
-        
-        Gate::before(function($user){
-            if ($user->level=='admin') {
+
+        Gate::before(function ($user) {
+            if ($user->level == 'admin') {
                 return true;
             }
         });
 
         //Directive Blade
-        Blade::directive('count',function($expression){
+        Blade::directive('count', function ($expression) {
             return "<?php echo DB::table({$expression})->count() ?>";
         });
 
-        Blade::directive('toRupiah',function($expression){
+        Blade::directive('toRupiah', function ($expression) {
             return "<?php echo number_format({$expression},0,2,'.') ?>";
         });
 
-        Blade::directive('toDate',function($expression){
+        Blade::directive('toDate', function ($expression) {
             return "<?php echo Carbon::parse($expression)->format('d-m-Y') ?>";
         });
 
         //View Share
-        View::share('coba','Hai Rahmat Hidayatullah');
+        View::share('coba', 'Hai Rahmat Hidayatullah');
     }
 }
