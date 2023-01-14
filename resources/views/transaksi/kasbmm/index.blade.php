@@ -37,7 +37,7 @@
 						<div class="card-body">
 							<div class="row ml-2">
 								<i class="fas fa-fw fa-wallet fa-3x"> </i>
-								<h4 class="ml-4 mt-2"><a href="{{ route('keluar.index') }}"> Pengeluaran</a></h4>
+								<h4 class="ml-4 mt-2"><a href="{{ route('keluarbmm.index') }}"> Pengeluaran</a></h4>
 							</div>
 
 						</div>
@@ -50,7 +50,7 @@
 						<div class="card-body">
 							<div class="row ml-2">
 								<i class="fas fa-fw fa-money-bill fa-3x"> </i>
-								<h4 class="ml-4 mt-2"><a href="{{ route('saldokas.index') }}"> Saldo Kas</a></h4>
+								<h4 class="ml-4 mt-2"><a href="{{ route('saldokasbmm.index') }}"> Saldo Kas</a></h4>
 							</div>
 
 						</div>

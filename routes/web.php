@@ -34,6 +34,8 @@ use App\Http\Controllers\Transaksi\KasbmmController;
 use App\Http\Controllers\Transaksi\JenistransaksibmmController;
 use App\Http\Controllers\Transaksi\MasukbmmController;
 use App\Http\Controllers\Transaksi\LaporankasbmmController;
+use App\Http\Controllers\Transaksi\KeluarbmmController;
+use App\Http\Controllers\Transaksi\SaldokasbmmController;
 
 //Kasmasjid namespace
 use App\Http\Controllers\Kasmasjid\KasmasjidController;
@@ -189,6 +191,15 @@ Route::group(['prefix' => 'transaksi', 'middleware' => ['auth', 'can:bmm']], fun
 		//Masuk
 		Route::get('/masukbmm', [MasukbmmController::class, 'index'])->name('masukbmm.index');
 		Route::post('/masukbmm', [MasukbmmController::class, 'store'])->name('masukbmm.store');
+
+		//Masuk
+		Route::get('/keluarbmm', [KeluarbmmController::class, 'index'])->name('keluarbmm.index');
+		Route::post('/keluarbmm', [KeluarbmmController::class, 'store'])->name('keluarbmm.store');
+
+		//Saldo
+		Route::get('/saldokasbmm', [SaldokasbmmController::class, 'index'])->name('saldokasbmm.index');
+		Route::post('/saldokasbmm', [SaldokasbmmController::class, 'store'])->name('saldokasbmm.store');
+		Route::post('/saldokasbmm-pdf', [LaporansaldokasController::class, 'kasbmm'])->name('saldokasbmm.saldokasbmm-pdf');
 
 		//Jenis Transaksi
 		Route::resource('jenistransaksibmm', 'JenistransaksibmmController');
