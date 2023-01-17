@@ -14,7 +14,7 @@ class MasukController extends Controller
 {
     public function index()
     {
-        $jenistransaksi = DB::table('jenis_transaksi')->where('tipe_transaksi', 'masuk')->get();
+        $jenistransaksi = DB::table('jenis_transaksi')->where('tipe_transaksi', 'masuk')->orderBy('nm_jenis_transaksi')->get();
 
         $histori_masuk = $this->historiMasuk();
         return view('kasmasjid.masuk.index', compact('jenistransaksi', 'histori_masuk'));

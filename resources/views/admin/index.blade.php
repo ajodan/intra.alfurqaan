@@ -28,7 +28,7 @@
 			<div class="card-body">
 				<div class="row ml-2">
 					<i class="fas fa-fw fa-user-tie fa-3x"> </i>
-					<h4 class="ml-4 mt-3"> @count('pengurus') PEGAWAI</h4>
+					<h4 class="ml-4 mt-3"> @count('pengurus') PENGURUS</h4>
 				</div>
 
 			</div>
@@ -55,11 +55,8 @@
 			<div class="card-header bg-dark text-white">Transaksi</div>
 			<div class="row ml-2">
 				<div class="card-body">
-					<ul>
-						<li>Total semua transaksi : <b>Rp @toRupiah($total_transaksi)</b></li>
-					</ul>
-
-					@if($total_transaksi > 0)
+					<h2>Saldo Kas Masjid : <b>Rp @toRupiah($total_transaksi)</b></h2>
+					{{-- @if($total_transaksi > 0)
 					<div class="form-group">
 						<form method="POST" action="{{ route('admin.truncate.transaksi') }}">
 							@csrf
@@ -67,7 +64,7 @@
 							<button class="btn btn-danger" type="submit" onclick="return confirm('Yakin Reset Transaksi ?')">RESET SEMUA TRANSAKSI</button>
 						</form>
 					</div>
-					@endif
+					@endif --}}
 				</div>
 			</div>
 		</div>

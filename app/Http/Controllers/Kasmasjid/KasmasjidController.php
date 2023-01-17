@@ -13,7 +13,7 @@ class KasmasjidController extends Controller
 {
 	public function index()
 	{
-		$jenistransaksi = DB::table('jenis_transaksi')->get();
+		$jenistransaksi = DB::table('jenis_transaksi')->orderBy('nm_jenis_transaksi','asc')->get();
 
 		$histori_transaksi = $this->historiTransaksi();
 

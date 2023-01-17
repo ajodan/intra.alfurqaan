@@ -2,15 +2,7 @@
 'title' => 'Tambah Topik Kajian',
 'contentTitle' => 'Tambah Topik Kajian',
 ])
-
-@push('css')
-<!-- DataTables -->
-<link rel="stylesheet" href="{{ asset('plugins') }}/datatables-bs4/css/dataTables.bootstrap4.min.css">
-@endpush
-
 @section('content')
-
-
 @include('layouts.components.alert-dismissible')
 
 <!-- DataTales -->
@@ -24,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="nm_topik_kajian">Nama Topik Kajian</label>
-                <input required class="form-control @error('nm_topik_kajian') is-invalid @enderror" type="text" name="nm_topik_kajian" id="nm_topik_kajian" placeholder="Nama Topik Kajian">
+                <input class="form-control @error('nm_topik_kajian') is-invalid @enderror" type="text" name="nm_topik_kajian" id="nm_topik_kajian" placeholder="Nama Topik Kajian">
                 @error('nm_topik_kajian')
                 <div class="invalid-feedback">
                     {{ $message }}

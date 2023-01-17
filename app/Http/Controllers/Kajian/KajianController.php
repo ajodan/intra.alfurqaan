@@ -26,8 +26,9 @@ class KajianController extends Controller
 
     public function create()
     {
-        $topikkajian = Topikkajian::pluck('nm_topik_kajian', 'id');
-        $kegiatan = Kegiatan::pluck('nm_kegiatan', 'id');
+        $topikkajian = Topikkajian::all();
+       // $kegiatan = Kegiatan::pluck('nm_kegiatan', 'id');
+        $kegiatan = Kegiatan::all();
         return view('kajian.kajian.create', compact('topikkajian', 'kegiatan'));
     }
 

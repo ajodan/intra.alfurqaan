@@ -71,6 +71,11 @@
             <label for="video_url">Video URL</label>
             <input class="form-control" type="text" name="video_url" id="video_url" placeholder="Link Video URL" value="{{ old('video_url', $kegiatan->video_url) }}">
         </div>
+        @error('video_url')
+        <div class="invalid-feedback">
+            <p class="text-danger">{{ $message }}</p>
+        </div>    
+        @enderror
         
         <div class="form-group">
             <label for="keterangan">Deskripsi</label>
@@ -78,6 +83,15 @@
             <div class="form-group">
                 <input id="keterangan" type="hidden" name="keterangan" rows="20" cols="130" value="{{ old('keterangan', $kegiatan->keterangan) }}">
                 <trix-editor input="keterangan" class="form-control"></trix-editor>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="keg_kajian" class="">Kegiatan Kajian</label>
+            <div class="">
+                <select id="keg_kajian" name="keg_kajian" class="form-control @error('keg_kajian') is-invalid @enderror" value="{{ old('keg_kajian', $kegiatan->keg_kajian) }}">
+                    <option value="Y" {{ $kegiatan->keg_kajian == 'Y' ? 'selected' : '' }}>Ya</option>
+                    <option value="N" {{ $kegiatan->keg_kajian == 'N' ? 'selected' : '' }}>Tidak</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

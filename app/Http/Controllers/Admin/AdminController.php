@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Kasmasjid;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Month;
 
 class AdminController extends Controller
 {
@@ -20,7 +22,10 @@ class AdminController extends Controller
 
     private function totalTransaksi()
     {
-        $transaksi = DB::table('transaksi')->sum('nominal');
-        return $transaksi;
+   
+        $totalmasuk = DB::table('kasmasjid')->sum('nominal_masuk');
+        $totalkeluar = DB::table('kasmasjid')->sum('nominal_keluar');
+        $saldoakhir = $totalmasuk - $totalkeluar;
+        return $saldoakhir;
     }
 }

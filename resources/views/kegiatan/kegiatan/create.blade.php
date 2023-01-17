@@ -81,12 +81,19 @@
             
             <div class="form-group">
                 <label for="keterangan">Deskripsi</label>
-               
                 <div class="form-group">
-                    <input id="keterangan" type="hidden" name="keterangan" rows="20" cols="130" value="{{ old('keterangan') }}">
+                    <input id="keterangan" type="hidden" name="keterangan" id="keterangan" rows="20" cols="130" value="{{ old('keterangan') }}">
                     <trix-editor input="keterangan" class="form-control"></trix-editor>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="keg_kajian">Kegiatan Kajian</label>
+                <select required="" class="form-control" name="keg_kajian" id="keg_kajian">
+                    <option value="Y">Ya</option>
+                    <option value="N">Tidak</option>
+                </select>
+            </div>
+           
             <div class="form-group">
                 <label for="name">Gambar <span class="required"></span></label>
                 <img class="img-preview img-fluid mb-3 com-sm-5">

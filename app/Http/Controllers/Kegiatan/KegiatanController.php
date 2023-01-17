@@ -50,6 +50,9 @@ class KegiatanController extends Controller
         }
 
         $validateData['created_by'] = Auth::user()->name;
+        $validateData['video_url'] = $request->video_url;
+        $validateData['keg_kajian'] = $request->keg_kajian;
+        $validateData['keterangan'] = $request->keterangan;
 
         Kegiatan::create($validateData);
 

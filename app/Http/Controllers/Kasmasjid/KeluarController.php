@@ -14,7 +14,7 @@ class KeluarController extends Controller
 {
     public function index()
     {
-        $jenistransaksi = DB::table('jenis_transaksi')->where('tipe_transaksi', 'keluar')->get();
+        $jenistransaksi = DB::table('jenis_transaksi')->where('tipe_transaksi', 'keluar')->orderBy('nm_jenis_transaksi')->get();
 
         $histori_keluar = $this->historiKeluar();
         return view('kasmasjid.keluar.index', compact('jenistransaksi', 'histori_keluar'));
