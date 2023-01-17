@@ -15,8 +15,8 @@ class CreateJamaahTable extends Migration
     {
         Schema::create('jamaah', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_nasabah')->nullable();
-            $table->string('nm_nasabah')->nullable();
+            $table->string('kd_jamaah')->nullable();
+            $table->string('nm_jamaah')->nullable();
             $table->enum('jk', ['L', 'P'])->nullable();
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();

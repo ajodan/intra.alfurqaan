@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKajiansTable extends Migration
+class CreateKasbmmTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateKajiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('kajians', function (Blueprint $table) {
+        Schema::create('kasbmm', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('topikkajian_id')->nullable();
-            $table->bigInteger('kegiatan_id')->nullable();
-            $table->text('isi_kajian')->nullable();
+            $table->dateTime('waktu')->nullable();
+            $table->bigInteger('nominal_masuk')->nullable();
+            $table->bigInteger('nominal_keluar')->nullable();
+            $table->integer('jenistransaksibmm_id')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class CreateKajiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kajians');
+        Schema::dropIfExists('kasbmm');
     }
 }

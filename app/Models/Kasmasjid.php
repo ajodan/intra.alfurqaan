@@ -14,7 +14,7 @@ class Kasmasjid extends Model
     protected $table = 'kasmasjid';
 
     protected $fillable = [
-        'id', 'waktu', 'nominal', 'jenistransaksi_id',
+        'id', 'waktu', 'nominal_masuk', 'nominal_keluar', 'jenistransaksi_id','created_by',
     ];
 
     public function jenistransaksi()

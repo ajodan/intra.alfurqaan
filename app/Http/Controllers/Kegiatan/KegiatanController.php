@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kegiatan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Events\KegiatanDeleteEvent;
 use App\Models\Kegiatan;
@@ -20,60 +21,49 @@ class KegiatanController extends Controller
         //$mubalighs = Mubaligh::get();
         $kegiatans = Kegiatan::join('mubalighs', 'kegiatans.mubaligh_id', '=', 'mubalighs.id')
             ->join('jenis_kegiatans', 'kegiatans.jeniskegiatan_id', '=', 'jenis_kegiatans.id')
-            ->select('kegiatans.*', 'mubalighs.nm_lengkap', 'jenis_kegiatans.nm_jenis_kegiatan')->get();
+            ->select('kegiatans.*', 'mubalighs.nm_lengkap', 'jenis_kegiatans.nm_jenis_kegiatan')
+            ->orderBy('kegiatans.tgl','DESC')->get();
         return view('kegiatan.kegiatan.index', compact('kegiatans'));
     }
 
     public function create()
     {
-        // $maxId = DB::table('kegiatans')->max('id');
-        // $max = $maxId + 1;
-        $jeniskegiatan = Jeniskegiatan::pluck('nm_jenis_kegiatan', 'id');
-        $mubaligh = Mubaligh::pluck('nm_lengkap', 'id');
-        return view('kegiatan.kegiatan.create', compact('jeniskegiatan', 'mubaligh'));
+        $jeniskegiatans = Jeniskegiatan::all();
+        $mubalighs = Mubaligh::all();
+        $nama = Auth::user()->name;
+        return view('kegiatan.kegiatan.create', compact('jeniskegiatans', 'mubalighs', 'nama'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nm_kegiatan' => 'required',
+        $validateData = $request->validate([
+            'nm_kegiatan' => 'required|max:255',
             'tgl' => 'required',
+            'waktu' => 'required',
             'jeniskegiatan_id' => 'required',
             'mubaligh_id' => 'required',
-            // 'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|file|max:1024',
         ]);
 
-        DB::transaction(function () use ($request) {
-            if ($request->file('photo')) {
-                $file = $request->file('photo');
-                $filename = date('YmdHi') . $file->getClientOriginalName();
-                $file->move(public_path('storage/Photo'), $filename);
-                $data['photo'] = $filename;
-            }
-            Kegiatan::create([
-                'jeniskegiatan_id' => $request->jeniskegiatan_id,
-                'mubaligh_id' => $request->mubaligh_id,
-                'nm_kegiatan' => $request->nm_kegiatan,
-                'photo' => $request->photo,
-                'tgl' => $request->tgl,
-                'waktu' => $request->waktu,
-                'video_url' => $request->video_url,
-                'keterangan' => $request->keterangan,
-                'created_by' => Auth::user()->name
-            ]);
+        if($request->file('photo')){
+            $validateData['photo'] =  $request->file('photo')->store('img-kegiatan');
+        }
 
-            // Mubaligh::create($request->all());
-        });
+        $validateData['created_by'] = Auth::user()->name;
+
+        Kegiatan::create($validateData);
 
         return redirect()->route('kegiatan.index')->with('success', 'Data Kegiatan berhasil disimpan');
     }
 
     public function edit($id)
     {
-        $kegiatan = Kegiatan::where('id', $id)->get();
-        $jeniskegiatan = Jeniskegiatan::all();
-        $mubaligh = Mubaligh::all();
-        return view('kegiatan.kegiatan.edit', ['kegiatan' => $kegiatan], compact('jeniskegiatan', 'mubaligh'));
+        
+        $kegiatans = Kegiatan::where('id', $id)->get();
+        $jeniskegiatans = Jeniskegiatan::all();
+        $mubalighs = Mubaligh::all();
+
+        return view('kegiatan.kegiatan.edit', ['kegiatans' => $kegiatans], compact('jeniskegiatans', 'mubalighs'));
     }
 
     public function show(Kegiatan $kegiatan)
@@ -83,14 +73,38 @@ class KegiatanController extends Controller
 
     public function update(Request $request, Kegiatan $kegiatan)
     {
-        $kegiatan->update($request->all());
+    
+        $validateData = $request->validate([
+            'nm_kegiatan' => 'required|max:255',
+            'tgl' => 'required',
+            'waktu' => 'required',
+            'jeniskegiatan_id' => 'required',
+            'mubaligh_id' => 'required',
+            'video_url' => 'required',
+            'keterangan' => 'required',
+           // 'photo' => 'required|image|file|max:1024',
+        ]);
+
+        if($request->file('photo')){
+            if($request->oldPhoto){
+                Storage::delete($request->oldPhoto);
+            }
+            $validateData['photo'] =  $request->file('photo')->store('img-kegiatan');
+        }
+
+        Kegiatan::where('id',$kegiatan->id)
+            ->update($validateData);
+          
         return redirect()->route('kegiatan.index')->with('success', 'Data Kegiatan berhasil diperbaharui');
     }
 
-    public function destroy(Mubaligh $mubaligh)
+    public function destroy(Kegiatan $kegiatan)
     {
-        event(new MubalighDeleteEvent($mubaligh));
-        $mubaligh->delete();
-        return redirect()->route('mubaligh.index')->with('success', 'Data Mubaligh berhasil dihapus');
+        event(new KegiatanDeleteEvent($kegiatan));
+        if($kegiatan->photo){
+            Storage::delete($kegiatan->photo);
+        }
+        $kegiatan->delete();
+        return redirect()->route('kegiatan.index')->with('success', 'Data Kegiatan berhasil dihapus');
     }
 }

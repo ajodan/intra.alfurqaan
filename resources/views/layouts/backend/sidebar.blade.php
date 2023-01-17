@@ -2,10 +2,10 @@
     <div class="navbar-wrapper">
         <div class="navbar-brand header-logo">
             <a href="" class="b-brand">
-                <div class="b-bg">
+                {{-- <div class="b-bg">
                     <i class="feather icon-trending-up"></i>
-                </div>
-                <span class="b-title">INTRA</span>
+                </div> --}}
+                <span class="b-title"><b>INTRA AL-FURQAAN</b></span>
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
         </div>
@@ -36,11 +36,12 @@
                         <li class=""><a href="{{ route('admin.yatimduafa.index') }}" class="">Yatim Duafa</a></li>
                     </ul>
                 </li>
+                
+                <!-- Role BMM -->
                 <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Tabungan</label>
                 </li>
-
-                <li class="nav-item {{ Request::segment(1) == 'transaksi' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
                     <a href="{{ route('transaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
                 <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
@@ -51,51 +52,58 @@
                     <label>Menu Kas BMM</label>
                 </li>
 
-                <li class="nav-item {{ Request::segment(1) == 'kasbmm' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kasbmm' ? '' : '' }}">
                     <a href="{{ route('kasbmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
 
-                <li class="nav-item {{ Request::segment(1) == 'jenistransaksibmm' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'jenistransaksibmm' ? '' : '' }}">
                     <a href="{{ route('jenistransaksibmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
                 </li>
+
+            <!-- Role Bendahara -->
 
                 <li class="nav-item {{ Request::is('bendahara') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Kas Masjid</label>
                 </li>
 
-                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? '' : '' }}">
                     <a href="{{ route('kasmasjid.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'jenistransaksi' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'jenistransaksi' ? '' : '' }}">
                     <a href="{{ route('jenistransaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
                 </li>
 
+               
+               <!-- Role Ibadah -->
                 <li class="nav-item {{ Request::is('ibadah') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Kegiatan</label>
                 </li>
 
-                <li class="nav-item {{ Request::segment(1) == 'jeniskegiatan' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'jeniskegiatan' ? '' : '' }}">
                     <a href="{{ route('jeniskegiatan.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Kegiatan</span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'mubaligh' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kategori' ? '' : '' }}">
+                    <a href="{{ route('kategori.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Kategori Artikel</span></a>
+                </li>
+                <li class="nav-item {{ Request::segment(1) == 'mubaligh' ? '' : '' }}">
                     <a href="{{ route('mubaligh.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Mubaligh</span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'kegiatan' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kegiatan' ? '' : '' }}">
                     <a href="{{ route('kegiatan.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Kegiatan</span></a>
+                </li>
+                <li class="nav-item {{ Request::segment(1) == 'artikel' ? '' : '' }}">
+                    <a href="{{ route('artikel.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Artikel</span></a>
                 </li>
 
                 <li class="nav-item {{ Request::is('ibadah') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Kajian</label>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'kajian' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kajian' ? '' : '' }}">
                     <a href="{{ route('topikkajian.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Topik Kajian</span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'kajian' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kajian' ? '' : '' }}">
                     <a href="{{ route('kajian.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Kajian</span></a>
                 </li>
-
-
-
 
                 @endif
 
@@ -104,10 +112,9 @@
                     <label>Menu Tabungan</label>
                 </li>
 
-                <li class="nav-item {{ Request::segment(1) == 'transaksi' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
                     <a href="{{ route('transaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
-
                 @endif
 
                 @if(auth()->user()->level=='bendahara')
@@ -115,10 +122,10 @@
                     <label>Menu Kas Masjid</label>
                 </li>
 
-                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? '' : '' }}">
                     <a href="{{ route('kasmasjid.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'jenistransaksi' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::segment(1) == 'jenistransaksi' ? '' : '' }}">
                     <a href="{{ route('jenistransaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
                 </li>
                 @endif

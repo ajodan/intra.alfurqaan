@@ -26,20 +26,24 @@
                 <label for="password">Password</label>
                 <input type="hidden" name="old_password" value="{{ $user->password }}" class="form-control">
                 <input class="form-control" type="password" name="password" id="password" placeholder="">
-                <small>Kosongkan jika tidak ingin mengubah password</small>
+                <small color="red">Kosongkan jika tidak ingin mengubah password</small>
             </div>
             <div class="form-group">
-                <label for="level">Level</label>
-                <select required class="form-control" name="level" id="level">
-                    <option value="" disabled selected>-- Pilih Level --</option>
-                    <option value="admin" {{ $user->level == 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="ketua" {{ $user->level == 'ketua' ? 'selected' : '' }}>Ketua</option>
-                    <option value="bmm" {{ $user->level == 'bmm' ? 'selected' : '' }}>BMM</option>
-                    <option value="bendahara" {{ $user->level == 'bendahara' ? 'selected' : '' }}>Bendahara</option>
-                    <option value="pengurus {{ $user->level == 'pengurus' ? 'selected' : '' }}">Pengurus</option>
-                    <option value="jamaah" {{ $user->level == 'jamaah' ? 'selected' : '' }}>Jamaah</option>
-                </select>
+                <label for="level" class="">Level</label>
+                <div class="">
+                    <select id="level" name="level" class="form-control">
+                        @foreach ($level as $lev)
+                        @if(old('level', $user->level) == $lev->id)
+                        <option value="{{ $lev->level }}" selected>{{ $lev->level }}</option>
+                        @else
+                        <option value="{{ $lev->level }}">{{ $lev->level }}</option>
+                        @endif
+                       
+                        @endforeach
+                    </select>
+                </div>
             </div>
+          
             <div class="form-group">
                 <label for="is_active">Status</label>
                 <select required class="form-control" name="is_active" id="is_active">

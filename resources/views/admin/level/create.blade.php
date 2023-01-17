@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group">
                 <label for="id">ID</label>
-                <input required class="form-control" type="" name="id" id="id" value="{{$maxId}}" placeholder="">
+                <input required class="form-control" type="" name="id" id="id" value="{{$max}}" placeholder="">
             </div>
             <div class="form-group">
                 <label for="level">Level Akses</label>

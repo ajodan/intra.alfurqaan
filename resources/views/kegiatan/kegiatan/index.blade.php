@@ -25,8 +25,9 @@
             <th>No</th>
             <th>Tanggal</th>
             <th>Jenis Kegiatan</th>
-            <!-- <th>Nama Kegiatan</th> -->
+            <th>Nama Kegiatan</th>
             <th>Mubaligh/Ustadz</th>
+            <th>Photo</th>
 
             <th>Aksi</th>
           </tr>
@@ -40,8 +41,13 @@
             <td>{{ $no++ }}</td>
             <td>{{ \Carbon\Carbon::parse($kegiatan->tgl)->format('d-m-Y') }}</td>
             <td>{{ $kegiatan->nm_jenis_kegiatan }}</td>
-            <!-- <td>{{ $kegiatan->nm_kegiatan }}</td> -->
+            <td>{{ $kegiatan->nm_kegiatan }}</td>
             <td>{{ $kegiatan->nm_lengkap }}</td>
+            @if($kegiatan->photo)
+            <td><img src="{{ asset('storage/'.$kegiatan->photo) }}" style="height: 100px; width: 120px;"></td>
+            @else
+            <td><img src="{{ asset('img/no-image.png') }}" style="height: 100px; width: 120px;"></td>
+            @endif
 
             <td>
               <div class="row ml-3">

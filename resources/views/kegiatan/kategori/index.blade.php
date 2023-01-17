@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-'title' => 'Manage Users',
-'contentTitle' => 'Manage Users',
+'title' => 'Manage Kategori Artikel',
+'contentTitle' => 'Manage Kategori Artikel',
 ])
 
 @push('css')
@@ -9,19 +9,13 @@
 @endpush
 
 @section('content')
-<x-alert></x-alert>
+
+@include('layouts.components.alert-dismissible')
+
 <!-- DataTables -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
-
-    <a href="{{ route('admin.pdf.export-pdf-user') }}" class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> Export PDF</a>
-
-    <a href="{{ route('admin.excel.export-excel-user') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</a>
-
-    <a href="javascript:void(0)" data-toggle="modal" data-target="#exportExcelModal" class="btn btn-info btn-sm"><i class="fas fa-file-excel"></i> Import Excel</a>
-
-    <a href="{{ route('admin.pdf.print-pdf-user') }}" target="_blank" class="btn btn-danger btn-sm float-right"><i class="fas fa-print"></i> Print PDF</a>
+    <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -29,12 +23,7 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Aktif</th>
-            <th>Level</th>
-
+            <th>Nama Kategori</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -42,44 +31,14 @@
           @php
           $no=1;
           @endphp
-          @foreach($users as $user)
+          @foreach($kategoris as $kat)
           <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->username }}</td>
-            <td>{{ $user->email }}</td>
-            <td>
-              @php
-              if($user->is_active == '1'){
-              echo "Ya";
-              }else{
-              echo "Tidak";
-              }
-              @endphp
-
-            </td>
-            <td>
-              @php
-              if($user->level == 'admin'){
-              $color = 'badge badge-primary';
-              }else if($user->level == 'pengurus'){
-              $color = 'badge badge-success';
-              }else if($user->level == 'bendahara'){
-              $color = 'badge badge-info';
-              }else if($user->level == 'bmm'){
-              $color = 'badge badge-warning';
-              }else if($user->level == 'ibadah'){
-              $color = 'badge badge-secondary';
-              }else{
-              $color = 'badge badge-danger';
-              }
-              @endphp
-              <span class="{{ $color }}">{{ $user->level }}</span>
-            </td>
+            <td>{{ $kat->nm_kategori }}</td>
             <td>
               <div class="row ml-3">
-                <a href="{{ route('admin.user.edit',$user->id_users) }}" class="btn btn-primary btn-sm">Ubah</a>
-                <form method="POST" action="{{ route('admin.user.destroy',$user->id_users) }}">
+                <a href="{{ route('kategori.edit',$kat->id) }}" class="btn btn-primary btn-sm">Ubah</a>
+                <form method="POST" action="{{ route('kategori.destroy',$kat->id) }}">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger btn-sm ml-2" onclick="return confirm('Yakin hapus ?')" type="submit">Hapus</button>
@@ -116,7 +75,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
         <button type="submit" class="btn btn-primary">Import</button>
         </form>
       </div>

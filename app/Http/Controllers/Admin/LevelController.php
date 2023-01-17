@@ -22,7 +22,8 @@ class LevelController extends Controller
     public function create()
     {
         $maxId = DB::table('level')->max('id');
-        return view('admin.level.create', compact('maxId'));
+        $max = $maxId + 1;
+        return view('admin.level.create', compact('max'));
     }
 
     public function store(Request $request)

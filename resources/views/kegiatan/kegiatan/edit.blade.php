@@ -6,97 +6,135 @@
 @section('content')
 <!-- DataTales -->
 <div class="card shadow mb-4">
-    @foreach ($kegiatan as $item)
-    <form method="POST" action="{{ route('kegiatan.update', ['kegiatan' => $item->id]) }}">
+    <div class="card-body">
+    @foreach ($kegiatans as $kegiatan)
+    <form method="POST" action="{{ route('kegiatan.update', ['kegiatan' => $kegiatan->id]) }}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
-        <div class="card-body">
-            <div class="form-group">
-                <label for="jeniskegiatan_id" class="">Jenis Kegiatan</label>
-                <div class="">
-                    <select id="jeniskegiatan_id" name="jeniskegiatan_id" class="form-control">
-                        @foreach ($jeniskegiatan as $item1)
-                        <option value="{{ $item1->id }}">{{ $item1->nm_jenis_kegiatan }}</option>
-                        @endforeach
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="nm_kegiatan">Nama Kegiatan</label>
+            <input type="text" class="form-control @error('nm_kegiatan') is-invalid @enderror" name="nm_kegiatan" id="nm_kegiatan" placeholder="Nama Kegiatan" autofocus value="{{ old('nm_kegiatan', $kegiatan->nm_kegiatan) }}">
+            @error('nm_kegiatan')
+            <div class="invalid-feedback">
+                <p class="text-danger">{{ $message }}</p>
+            </div>    
+            @enderror          
+        </div>
+        <div class="form-group">
+            <label for="jeniskegiatan_id" class="">Jenis Kegiatan</label>
+            <div class="">
+                <select id="jeniskegiatan_id" name="jeniskegiatan_id" class="form-control">
+                    @foreach ($jeniskegiatans as $jnskeg)
+                        @if(old('jeniskegiatan_id', $kegiatan->jeniskegiatan_id) == $jnskeg->id)
+                        <option value="{{ $jnskeg->id }}" selected>{{ $jnskeg->nm_jenis_kegiatan }}</option>
+                        @else
+                        <option value="{{ $jnskeg->id }}">{{ $jnskeg->nm_jenis_kegiatan }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
+        </div>
+        <div class="form-group">
+            <label for="mubaligh_id" class="">Nama Mubaligh/Ustadz</label>
+            <div class="">
+                <select id="mubaligh_id" name="mubaligh_id" class="form-control">
+                    @foreach ($mubalighs as $muba)
+                        @if(old('mubaligh_id', $kegiatan->mubaligh_id) == $muba->id)
+                        <option value="{{ $muba->id }}" selected>{{ $muba->nm_lengkap }}</option>
+                        @else
+                        <option value="{{ $muba->id }}">{{ $muba ->nm_lengkap }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label for="tgl">Tanggal Kegiatan</label>
+            <input  class="form-control @error('tgl') is-invalid @enderror" type="date" name="tgl" id="tgl" placeholder="Tanggal Kegiatan" value="{{ old('tgl', $kegiatan->tgl) }}">
+            @error('tgl')
+            <div class="invalid-feedback">
+                <p class="text-danger">{{ $message }}</p>
+            </div>    
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="tgl">Waktu Kegiatan</label>
+            <input class="form-control @error('tgl') is-invalid @enderror" type="time" name="waktu" id="waktu" placeholder="Waktu Kegiatan" value="{{ old('waktu', $kegiatan->waktu) }}">
+            @error('waktu')
+            <div class="invalid-feedback">
+                <p class="text-danger">{{ $message }}</p>
+            </div>    
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="video_url">Video URL</label>
+            <input class="form-control" type="text" name="video_url" id="video_url" placeholder="Link Video URL" value="{{ old('video_url', $kegiatan->video_url) }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="keterangan">Deskripsi</label>
+           
             <div class="form-group">
-                <label for="mubaligh_id" class="">Nama Mubaligh/Ustadz</label>
-                <div class="">
-                    <select id="mubaligh_id" name="mubaligh_id" class="form-control">
-                        @foreach ($mubaligh as $item2)
-                        <option value="{{ $item2->id }}">{{ $item2->nm_lengkap }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <input id="keterangan" type="hidden" name="keterangan" rows="20" cols="130" value="{{ old('keterangan', $kegiatan->keterangan) }}">
+                <trix-editor input="keterangan" class="form-control"></trix-editor>
             </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Gambar <span class="required"></span></label>
+            <input type="hidden" name="oldPhoto" value="{{ $kegiatan->photo }}">
+            @if($kegiatan->photo)
+            <img src="{{ asset('storage/' . $kegiatan->photo) }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
+            @else
+            <img class="img-preview img-fluid mb-3 com-sm-5">
+            @endif
+           
             <div class="form-group">
-                <label for="nm_kegiatan">Nama Kegiatan</label>
-                <input required class="form-control @error('nm_kegiatan') is-invalid @enderror" value="{{ $item->nm_kegiatan }}" type="text" name="nm_kegiatan" id="nm_kegiatan" placeholder="Nama Kegiatan">
-                @error('nm_kegiatan')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
+                <input type="file" name="photo" id="photo" onchange="previewImage()" class="form-control" @error('photo') is-invalid @enderror>
+                @error('photo')
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="tgl">Tanggal Kegiatan</label>
-                <input required class="form-control @error('tgl') is-invalid @enderror" value="{{ $item->tgl }}" type="date" name="tgl" id="tgl" placeholder="Tanggal Kegiatan">
-                @error('tgl')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="waktu">Waktu Kegiatan</label>
-                <input required class="form-control @error('waktu') is-invalid @enderror" value="{{ $item->waktu }}" type="time" name="waktu" id="waktu" placeholder="Waktu Kegiatan">
-                @error('waktu')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="video_url">Video URL</label>
-                <input required class="form-control @error('video_url') is-invalid @enderror" value="{{ $item->video_url }}" type="text" name="video_url" id="video_url" placeholder="Link Video URL">
-                @error('video_url')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="Photo Kegiatan">Photo Kegiatan</label>
-                <img src="{{ url('Kegiatan/'.$item->photo) }}" style="height: 300px; width: 250px;">
-                @error('video_url')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class=" form-group">
-                <label for="keterangan">Deskripsi/Keterangan</label>
-                <textarea name="keterangan" id="keterangan" rows="20" cols="130">{{ $item->keterangan }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="created_by">Pengentri</label>
-                <input required class="form-control @error('created_by') is-invalid @enderror" value="{{ $item->created_by }}" type="text" name="created_by" id="created_by" placeholder="Pengentri">
-                @error('created_by')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
+        </div>
 
-            <div class="form-group">
-                <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
-                <a href="{{ route('kegiatan.index') }}" class="btn btn-danger btn-sm">Kembali</a>
-            </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
+            <a href="{{ route('kegiatan.index') }}" class="btn btn-danger btn-sm">Kembali</a>
+        </div>
     </form>
     @endforeach
+    </div>
 </div>
 </div>
+
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+  <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
+  <script>
+    function previewImage(){
+        const image = document.querySelector('#photo');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(photo.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+    
+    const judul = document.querySelector('#judul');
+    const slug = document.querySelector('#slug');
+
+    judul.addEventListener('change', function(){
+        fetch('/artikel/checkSlug?judul=' + judul.value)
+          .then(response => response.json())
+          .then(data => slug.value = data.slug)
+    });
+
+</script>
+
+
 @stop

@@ -24,7 +24,7 @@
           <tr>
             <th>No</th>
             <th>Nama Lengkap</th>
-            <!-- <th>Alamat</th> -->
+            <th>Alamat</th>
             <th>Nomor Ponsel</th>
             <th>Peran</th>
             <th>Photo</th>
@@ -39,10 +39,14 @@
           <tr>
             <td>{{ $no++ }}</td>
             <td>{{ $ust->nm_lengkap }}</td>
-            <!-- <td>{{ $ust->alamat }}</td> -->
+            <td>{{ $ust->alamat }}</td>
             <td>{{ $ust->hp }}</td>
             <td>{{ $ust->nm_peran }}</td>
-            <td><img src="{{ url('storage/Photo/'.$ust->photo) }}" style="height: 60px; width: 50px;"></td>
+            @if($ust->photo)
+            <td><img src="{{ asset('storage/'.$ust->photo) }}" style="height: 100px; width: 80px;"></td>
+            @else
+            <td><img src="{{ asset('img/no-image.png') }}" style="height: 100px; width: 80px;"></td>
+            @endif
             <td>
               <div class="row ml-3">
                 <a href="{{ route('mubaligh.edit',$ust->id) }}" class="btn btn-primary btn-sm">Ubah</a>

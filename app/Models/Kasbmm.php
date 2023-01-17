@@ -14,7 +14,7 @@ class Kasbmm extends Model
     protected $table = 'kasbmm';
 
     protected $fillable = [
-        'id', 'waktu', 'nominal', 'jenistransaksibmm_id',
+        'id', 'waktu', 'nominal_masuk', 'nominal_keluar', 'jenistransaksibmm_id','created_by',
     ];
 
     public function jenistransaksibmm()

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRekeningTable extends Migration
+class CreateKategorisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateRekeningTable extends Migration
      */
     public function up()
     {
-        Schema::create('rekening', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->string('no_rekening')->nullable();
-            $table->integer('pin')->nullable();
-            $table->string('kd_jamaah')->nullable();
-            $table->bigInteger('saldo')->nullable();
+            $table->string('nm_kategori')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateRekeningTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rekening');
+        Schema::dropIfExists('kategoris');
     }
 }

@@ -37,7 +37,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('admin.user.edit', compact('user'));
+        $level = DB::table('level')->get();
+        return view('admin.user.edit', compact('user','level'));
     }
 
     public function update(DefaultRequest $request, User $user)

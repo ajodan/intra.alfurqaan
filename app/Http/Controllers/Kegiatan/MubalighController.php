@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kegiatan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Events\MubalighDeleteEvent;
 use App\Models\Mubaligh;
@@ -23,69 +24,76 @@ class MubalighController extends Controller
 
     public function create()
     {
-        $peranmubaligh = Peranmubaligh::pluck('nm_peran', 'id');
-        return view('kegiatan.mubaligh.create', compact('peranmubaligh'));
+        $peranmubalighs = Peranmubaligh::all();
+        return view('kegiatan.mubaligh.create', compact('peranmubalighs'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nm_lengkap' => 'required',
+
+        $validateData = $request->validate([
+            'nm_lengkap' => 'required|max:255',
             'hp' => 'required',
             'alamat' => 'required',
+            'jk' => 'required',
+            'email' => 'required',
+            'profil' => 'required',
+            'peranmubaligh_id' => 'required',
+            'photo' => 'required|image|file|max:1024',
         ]);
 
-        DB::transaction(function () use ($request) {
-            if ($request->file('photo')) {
-                $file = $request->file('photo');
-                $filename = date('YmdHi') . $file->getClientOriginalName();
-                $file->move(public_path('storage/Photo'), $filename);
-                $data['photo'] = $filename;
-            }
-            Mubaligh::create([
-                'nm_lengkap' => $request->nm_lengkap,
-                'email' => $request->email,
-                'hp' => $request->hp,
-                'jk' => $request->jk,
-                'alamat' => $request->alamat,
-                'photo' => $filename,
-                'profil' => $request->profil,
-                'peranmubaligh_id' => $request->peranmubaligh_id
-            ]);
+        if($request->file('photo')){
+            $validateData['photo'] =  $request->file('photo')->store('img-mubaligh');
+        }
 
-            // Mubaligh::create($request->all());
-        });
+       
+        Mubaligh::create($validateData);
 
-        return redirect()->route('mubaligh.index')->with('success', 'Data Mubaligh berhasil disimpan');
+        return redirect()->route('mubaligh.index')->with('success', 'Data Mubaligh/Ustadz berhasil disimpan');
     }
 
     public function edit($id)
     {
         $mubaligh = Mubaligh::where('id', $id)->get();
-        $peranmubaligh = Peranmubaligh::all();
+        $peranmubalighs = Peranmubaligh::all();
 
-        return view('kegiatan.mubaligh.edit', ['mubaligh' => $mubaligh], compact('peranmubaligh'));
+        return view('kegiatan.mubaligh.edit', ['mubaligh' => $mubaligh], compact('peranmubalighs'));
     }
-
-    // public function edit($id)
-    // {
-    //     $mubaligh = Mubaligh::join('peran_mubalighs', 'mubalighs.peranmubaligh_id', '=', 'peran_mubalighs.id')
-    //         ->select('mubalighs.*', 'peran_mubalighs.nm_peran')
-    //         ->find($id);
-
-    //     $peranmubaligh = Peranmubaligh::all();
-    //     return view('kegiatan.mubaligh.edit', compact('mubaligh', 'peranmubaligh'));
-    // }
 
     public function update(Request $request, Mubaligh $mubaligh)
     {
-        $mubaligh->update($request->all());
+       
+        $validateData = $request->validate([
+            'nm_lengkap' => 'required|max:255',
+            'hp' => 'required',
+            'alamat' => 'required',
+            'jk' => 'required',
+            'email' => 'required',
+            'profil' => 'required',
+            'peranmubaligh_id' => 'required',
+            'photo' => 'image|file|max:1024',
+        ]);
+
+        if($request->file('photo')){
+            if($request->oldPhoto){
+                Storage::delete($request->oldPhoto);
+            }
+            $validateData['photo'] =  $request->file('photo')->store('img-mubaligh');
+        }
+
+        Mubaligh::where('id',$mubaligh->id)
+            ->update($validateData);
+
         return redirect()->route('mubaligh.index')->with('success', 'Data Mubaligh berhasil diperbaharui');
+
     }
 
     public function destroy(Mubaligh $mubaligh)
     {
         event(new MubalighDeleteEvent($mubaligh));
+        if($mubaligh->photo){
+            Storage::delete($mubaligh->photo);
+        }
         $mubaligh->delete();
         return redirect()->route('mubaligh.index')->with('success', 'Data Mubaligh berhasil dihapus');
     }

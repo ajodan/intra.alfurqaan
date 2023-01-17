@@ -44,10 +44,13 @@ use App\Http\Controllers\Kasmasjid\KeluarController;
 use App\Http\Controllers\Kasmasjid\MasukController;
 use App\Http\Controllers\Kasmasjid\LaporankasController;
 use App\Http\Controllers\Kasmasjid\LaporansaldokasController;
+use App\Http\Controllers\Kasmasjid\JenistransaksiController;
 
 use App\Http\Controllers\Kajian\TopikkajianController;
 
-use App\Http\Controllers\Kasmasjid\JenistransaksiController;
+use App\Http\Controllers\Kegiatan\KategoriController;
+use App\Http\Controllers\Kegiatan\ArtikelController;
+
 use App\Http\Controllers\Kegiatan\JeniskegiatanController;
 use App\Http\Controllers\Kegiatan\MubalighController;
 
@@ -240,11 +243,19 @@ Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:ibadah']], f
 
 		//Jenis Kegiatan
 		Route::resource('jeniskegiatan', 'JeniskegiatanController');
+
+		//Kategori 
+		Route::resource('kategori', 'KategoriController');
 		//Mubaligh
 		Route::resource('mubaligh', 'MubalighController');
+		//Artikel
+
+		Route::resource('artikel', 'ArtikelController');
 
 		//Kegiatan
 		Route::resource('kegiatan', 'KegiatanController');
+
+		Route::get('/artikel/checkSlug', [ArtikelController::class, 'checkSlug']);
 	});
 });
 

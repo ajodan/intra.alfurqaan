@@ -21,6 +21,7 @@ class CreatePengurusTable extends Migration
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('photo')->nullable();
             $table->bigInteger('id_jabatan')->nullable();
             $table->bigInteger('id_users')->nullable();
             $table->timestamps();
