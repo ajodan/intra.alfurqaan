@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `jabatan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.jabatan: ~10 rows (approximately)
+-- Dumping data for table intra_masjid.jabatan: ~8 rows (approximately)
 /*!40000 ALTER TABLE `jabatan` DISABLE KEYS */;
 INSERT INTO `jabatan` (`id`, `nm_jabatan`, `created_at`, `updated_at`) VALUES
 	(1, 'Ketua Umum Dewan Kemakmuran Masjid', '2023-01-17 00:11:39', '2023-01-17 00:11:57'),
@@ -89,10 +89,12 @@ CREATE TABLE IF NOT EXISTS `jamaah` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.jamaah: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.jamaah: ~1 rows (approximately)
 /*!40000 ALTER TABLE `jamaah` DISABLE KEYS */;
+INSERT INTO `jamaah` (`id`, `kd_jamaah`, `nm_jamaah`, `jk`, `no_hp`, `email`, `alamat`, `id_users`, `created_at`, `updated_at`) VALUES
+	(1, 'JMHEXTL', 'Warkim', 'L', '081314408686', 'x1syah@gmail.com', 'Taman Alamanda Blok C1 No. 20', 13, '2023-01-17 13:48:18', '2023-01-17 13:48:18');
 /*!40000 ALTER TABLE `jamaah` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.jenis_kegiatans
@@ -102,10 +104,25 @@ CREATE TABLE IF NOT EXISTS `jenis_kegiatans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.jenis_kegiatans: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.jenis_kegiatans: ~14 rows (approximately)
 /*!40000 ALTER TABLE `jenis_kegiatans` DISABLE KEYS */;
+INSERT INTO `jenis_kegiatans` (`id`, `nm_jenis_kegiatan`, `created_at`, `updated_at`) VALUES
+	(1, 'Kajian Islam Kamis Malam', '2023-01-17 13:52:02', '2023-01-17 14:03:26'),
+	(2, 'Kajian Islam Ahad Pagi', '2023-01-17 13:53:36', '2023-01-17 14:03:03'),
+	(3, 'Pembacaan Hadis Riyadus Sholihin', '2023-01-17 13:54:04', '2023-01-17 14:04:12'),
+	(4, 'Pengajian Muslimat Sabtu Sore', '2023-01-17 13:54:24', '2023-01-17 14:05:16'),
+	(5, 'Jum\'at Berkah', '2023-01-17 13:56:47', '2023-01-17 14:05:53'),
+	(6, 'Gebyar Muharram', '2023-01-17 13:57:25', '2023-01-17 14:07:24'),
+	(7, 'Penyembelihan Hewan Kurban', '2023-01-17 14:08:26', '2023-01-17 14:08:26'),
+	(8, 'Sholat Jum\'at Berjamaah', '2023-01-17 14:13:12', '2023-01-17 14:13:12'),
+	(9, 'Sholat Taraweh Berjamaah', '2023-01-17 14:13:28', '2023-01-17 14:13:28'),
+	(10, 'Tadarus Al Qur\'an', '2023-01-17 14:13:42', '2023-01-17 14:13:42'),
+	(11, 'Buka Puasa Bersama', '2023-01-17 14:14:01', '2023-01-17 14:14:01'),
+	(12, 'Pesantren Kilat', '2023-01-17 14:14:21', '2023-01-17 14:14:21'),
+	(13, 'Penerimaan dan Pembagian Zakat Fitrah', '2023-01-17 14:15:21', '2023-01-17 14:15:21'),
+	(14, 'Santunan Anak Yatim dan Dhuafa', '2023-01-17 14:18:16', '2023-01-17 14:18:16');
 /*!40000 ALTER TABLE `jenis_kegiatans` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.jenis_transaksi
@@ -116,22 +133,29 @@ CREATE TABLE IF NOT EXISTS `jenis_transaksi` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.jenis_transaksi: ~11 rows (approximately)
+-- Dumping data for table intra_masjid.jenis_transaksi: ~18 rows (approximately)
 /*!40000 ALTER TABLE `jenis_transaksi` DISABLE KEYS */;
 INSERT INTO `jenis_transaksi` (`id`, `nm_jenis_transaksi`, `tipe_transaksi`, `created_at`, `updated_at`) VALUES
 	(1, 'Saldo Awal', 'masuk', '2023-01-17 00:55:44', '2023-01-17 00:55:44'),
 	(2, 'Penarikan Celengan Bulanan', 'masuk', '2023-01-17 00:56:20', '2023-01-17 00:56:20'),
 	(3, 'Kotak Amal Jum\'at', 'masuk', '2023-01-17 00:56:30', '2023-01-17 00:56:30'),
-	(4, 'Kotak Amal Jum\'at', 'masuk', '2023-01-17 00:56:42', '2023-01-17 00:56:42'),
+	(4, 'Kotak Amal Subuh', 'masuk', '2023-01-17 00:56:42', '2023-01-17 08:58:15'),
 	(5, 'Konsumsi Kajian Ahad Pagi', 'keluar', '2023-01-17 00:57:13', '2023-01-17 00:57:13'),
 	(6, 'Konsumsi Kajian Kamis Malam', 'keluar', '2023-01-17 00:57:28', '2023-01-17 00:57:28'),
 	(7, 'Biaya Operasional Sholat Jum\'at', 'keluar', '2023-01-17 00:57:49', '2023-01-17 00:57:49'),
 	(8, 'Biaya Kafalah Guru Ngaji', 'keluar', '2023-01-17 00:58:05', '2023-01-17 00:58:05'),
 	(9, 'Biaya Perlengkapan Bulanan Masjid', 'keluar', '2023-01-17 00:58:21', '2023-01-17 00:58:21'),
 	(10, 'Tagihan Internet Masjid', 'keluar', '2023-01-17 00:59:04', '2023-01-17 00:59:04'),
-	(11, 'Tagihan Listrik Masjid', 'keluar', '2023-01-17 00:59:41', '2023-01-17 00:59:41');
+	(11, 'Tagihan Listrik Masjid', 'keluar', '2023-01-17 00:59:41', '2023-01-17 00:59:41'),
+	(12, 'Biaya Kajian Kamis Malam', 'keluar', '2023-01-17 09:11:58', '2023-01-17 09:11:58'),
+	(13, 'Biaya Kajian Ahad Pagi', 'keluar', '2023-01-17 09:12:10', '2023-01-17 09:12:10'),
+	(14, 'Biaya Fotocopi Undangan', 'keluar', '2023-01-17 09:14:50', '2023-01-17 09:14:50'),
+	(15, 'Donasi Lingkungan Sekitar Masjid', 'keluar', '2023-01-17 09:19:38', '2023-01-17 09:19:38'),
+	(16, 'Biaya Gaji Marbot', 'keluar', '2023-01-17 09:24:40', '2023-01-17 09:24:40'),
+	(17, 'Biaya Cetak Kalender', 'keluar', '2023-01-17 09:27:13', '2023-01-17 09:27:13'),
+	(18, 'Biaya Pembuatan Pagar', 'keluar', '2023-01-17 09:33:30', '2023-01-17 09:33:30');
 /*!40000 ALTER TABLE `jenis_transaksi` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.jenis_transaksi_bmm
@@ -158,10 +182,13 @@ CREATE TABLE IF NOT EXISTS `kajians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.kajians: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.kajians: ~2 rows (approximately)
 /*!40000 ALTER TABLE `kajians` DISABLE KEYS */;
+INSERT INTO `kajians` (`id`, `topikkajian_id`, `kegiatan_id`, `isi_kajian`, `created_by`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, '<div>Iringilah kejelekan itu dengan kebaikan niscaya kebaikan itu akan menghapusnya (kejelekan). Dan pergaulilah manusia dengan pergaulan yang baik.”<br>(HR. At Tirmidzi)<br><br></div><div><strong>Bergaul dengan manusia dengan akhlak yang baik.<br></strong><br></div><div>Agama dibagi 3 :<br><br></div><ul><li>aqidah,</li><li>syariah ,</li><li>akhlak.</li></ul><div><strong>Aqidah :</strong> sumber dan hakikat keberadaan agama.<br><strong>Syariah</strong> : menggambarkan fungsi agama.<br><br></div><div><strong>Definisi ahlak</strong> :<br><br></div><div>Akhlak adalah perangai,tabiat/ karakter.<br>Ahlak terbagi menjadi 2 :<br><br></div><div>Yaitu Akhlak yang terpuji dan Akhlak yang tercela.<br><br></div><div><strong>Perbedaan adab dan ahlak.<br></strong><br></div><ul><li>Ahlak adalah karakter ,</li><li>Adab adalah Perbuatan</li></ul><div><strong>Ahlak mulia berat timbangannya di akherat</strong> .<br><br></div><div>Ada didalam hadits, diantaranya hadits berikut ini :<br><br></div><div dir="rtl">عَنْ أَبِي الدَّرْدَاءِ أَنَّ النَّبِيَّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ مَا شَيْءٌ أَثْقَلُ فِي مِيزَانِ الْمُؤْمِنِ يَوْمَ الْقِيَامَةِ مِنْ خُلُقٍ حَسَنٍ وَإِنَّ اللَّهَ لَيُبْغِضُ الْفَاحِشَ الْبَذِيءَ<br><br></div><div>Dari Abu Darda’ radhiallahu anhu bahwasanya Nabi shallallahu alaihi was sallam bersabda, “Tidak ada sesuatu yang lebih berat dalam timbangan seorang mukmin kelak ada hari kiamat daripada akhlak yang baik. Sesungguhnya Allah amatlah murka terhadap seseorang yang keji lagi jahat.” (HR. Tirmidzi)<br><br></div><div>&nbsp;<br><br></div><div dir="rtl">أَنَا زَعِيمٌ بِبَيْتٍ فِي رَبَضِ الْجَنَّةِ لِمَنْ تَرَكَ الْمِرَاءَ وَإِنْ كَانَ مُحِقًّا وَبِبَيْتٍ فِي وَسَطِ الْجَنَّةِ لِمَنْ تَرَكَ الْكَذِبَ وَإِنْ كَانَ مَازِحًا وَبِبَيْتٍ فِي أَعْلَى الْجَنَّةِ لِمَنْ حَسَّنَ خُلُقَهُ<br><br></div><div>“Aku adalah penjamin sebuah rumah di sekitar taman (Surga) bagi seseorang yang meniggalkan perdebatan walaupun ia benar, penjamin rumah ditengah Surga bagi orang yang meninggalkan dusta walaupun ia bercanda, juga menjadi penjamin sebuah rumah di Surga paling atas bagi orang yang memiliki akhlak yang baik.”<br><br></div><div>(HR. Abu Dawud)<br><br></div>', 'Administrator', '2023-01-17 15:26:12', '2023-01-17 17:34:55'),
+	(2, 3, 1, '<div>Aku adalah penjamin sebuah rumah di sekitar taman (Surga) bagi seseorang yang meniggalkan perdebatan walaupun ia benar, penjamin rumah ditengah Surga bagi orang yang meninggalkan dusta walaupun ia bercanda, juga menjadi penjamin sebuah rumah di Surga paling atas bagi orang yang memiliki akhlak yang baik.” xxxxxxxxxxx</div>', 'Administrator', '2023-01-17 17:40:43', '2023-01-17 18:09:23');
 /*!40000 ALTER TABLE `kajians` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.kasbmm
@@ -192,12 +219,55 @@ CREATE TABLE IF NOT EXISTS `kasmasjid` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.kasmasjid: ~1 rows (approximately)
+-- Dumping data for table intra_masjid.kasmasjid: ~44 rows (approximately)
 /*!40000 ALTER TABLE `kasmasjid` DISABLE KEYS */;
 INSERT INTO `kasmasjid` (`id`, `waktu`, `nominal_masuk`, `nominal_keluar`, `jenistransaksi_id`, `created_by`, `created_at`, `updated_at`) VALUES
-	(1, '2022-12-01 08:45:12', 19863700, 0, 1, 'Administrator', '2023-01-17 08:45:12', NULL);
+	(1, '2022-12-01 08:45:12', 19863700, 0, 1, 'Administrator', '2023-01-17 08:45:12', NULL),
+	(2, '2022-12-04 08:57:42', 9306000, 0, 2, 'Administrator', '2023-01-17 08:57:42', NULL),
+	(3, '2022-12-02 08:58:38', 700000, 0, 3, 'Administrator', '2023-01-17 08:58:38', NULL),
+	(4, '2022-12-02 08:59:02', 600000, 0, 4, 'Administrator', '2023-01-17 08:59:02', NULL),
+	(5, '2022-12-09 08:59:29', 1060000, 0, 3, 'Administrator', '2023-01-17 08:59:29', NULL),
+	(7, '2022-12-16 09:01:12', 750000, 0, 3, 'Administrator', '2023-01-17 09:01:12', NULL),
+	(8, '2022-12-16 09:01:29', 650000, 0, 4, 'Administrator', '2023-01-17 09:01:29', NULL),
+	(9, '2022-12-23 09:01:45', 800000, 0, 3, 'Administrator', '2023-01-17 09:01:45', NULL),
+	(10, '2022-12-23 09:02:05', 650000, 0, 4, 'Administrator', '2023-01-17 09:02:05', NULL),
+	(11, '2022-12-30 09:02:25', 1000000, 0, 3, 'Administrator', '2023-01-17 09:02:25', NULL),
+	(12, '2022-12-30 09:02:44', 650000, 0, 4, 'Administrator', '2023-01-17 09:02:44', NULL),
+	(13, '2022-12-09 09:09:46', 650000, 0, 4, 'Administrator', '2023-01-17 09:09:46', NULL),
+	(14, '2022-12-01 09:12:36', 0, 400000, 12, 'Administrator', '2023-01-17 09:12:36', NULL),
+	(15, '2022-12-01 09:13:00', 0, 100000, 6, 'Administrator', '2023-01-17 09:13:00', NULL),
+	(16, '2022-12-01 09:13:47', 0, 150000, 10, 'Administrator', '2023-01-17 09:13:47', NULL),
+	(17, '2022-12-01 09:15:19', 0, 100000, 14, 'Administrator', '2023-01-17 09:15:19', NULL),
+	(18, '2022-12-02 09:15:48', 0, 600000, 7, 'Administrator', '2023-01-17 09:15:48', NULL),
+	(19, '2022-12-03 09:16:10', 0, 2400000, 8, 'Administrator', '2023-01-17 09:16:10', NULL),
+	(20, '2022-12-04 09:16:45', 0, 400000, 13, 'Administrator', '2023-01-17 09:16:45', NULL),
+	(21, '2022-12-04 09:17:04', 0, 250000, 5, 'Administrator', '2023-01-17 09:17:04', NULL),
+	(22, '2022-12-04 09:17:26', 0, 421000, 11, 'Administrator', '2023-01-17 09:17:26', NULL),
+	(23, '2022-12-04 09:17:42', 0, 352000, 9, 'Administrator', '2023-01-17 09:17:42', NULL),
+	(24, '2022-12-08 09:18:16', 0, 400000, 12, 'Administrator', '2023-01-17 09:18:16', NULL),
+	(25, '2022-12-08 09:18:38', 0, 100000, 6, 'Administrator', '2023-01-17 09:18:38', NULL),
+	(26, '2022-12-09 09:19:09', 0, 600000, 7, 'Administrator', '2023-01-17 09:19:09', NULL),
+	(27, '2022-12-09 09:20:33', 0, 500000, 15, 'Administrator', '2023-01-17 09:20:33', NULL),
+	(28, '2022-12-11 09:21:16', 0, 500000, 13, 'Administrator', '2023-01-17 09:21:16', NULL),
+	(29, '2022-12-11 09:21:47', 0, 250000, 5, 'Administrator', '2023-01-17 09:21:47', NULL),
+	(30, '2022-12-15 09:22:12', 0, 400000, 6, 'Administrator', '2023-01-17 09:22:12', NULL),
+	(31, '2022-12-15 09:22:33', 0, 100000, 6, 'Administrator', '2023-01-17 09:22:33', NULL),
+	(32, '2022-12-16 09:23:02', 0, 600000, 7, 'Administrator', '2023-01-17 09:23:02', NULL),
+	(33, '2022-12-18 09:23:30', 0, 300000, 13, 'Administrator', '2023-01-17 09:23:30', NULL),
+	(34, '2022-12-18 09:24:07', 0, 250000, 5, 'Administrator', '2023-01-17 09:24:07', NULL),
+	(35, '2022-12-19 09:25:29', 0, 1200000, 16, 'Administrator', '2023-01-17 09:25:29', NULL),
+	(36, '2022-12-22 09:26:09', 0, 400000, 12, 'Administrator', '2023-01-17 09:26:09', NULL),
+	(37, '2022-12-22 09:26:32', 0, 100000, 6, 'Administrator', '2023-01-17 09:26:32', NULL),
+	(38, '2022-12-22 09:27:41', 0, 3600000, 17, 'Administrator', '2023-01-17 09:27:41', NULL),
+	(39, '2022-12-23 09:28:02', 0, 600000, 7, 'Administrator', '2023-01-17 09:28:02', NULL),
+	(40, '2022-12-25 09:31:48', 0, 400000, 13, 'Administrator', '2023-01-17 09:31:48', NULL),
+	(41, '2022-12-25 09:32:06', 0, 250000, 5, 'Administrator', '2023-01-17 09:32:06', NULL),
+	(42, '2022-12-29 09:32:29', 0, 300000, 12, 'Administrator', '2023-01-17 09:32:29', NULL),
+	(43, '2022-12-29 09:32:53', 0, 100000, 6, 'Administrator', '2023-01-17 09:32:53', NULL),
+	(44, '2022-12-30 09:33:59', 0, 1000000, 18, 'Administrator', '2023-01-17 09:33:59', NULL),
+	(45, '2022-12-30 09:37:42', 0, 600000, 7, 'Administrator', '2023-01-17 09:37:42', NULL);
 /*!40000 ALTER TABLE `kasmasjid` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.kategoris
@@ -207,10 +277,16 @@ CREATE TABLE IF NOT EXISTS `kategoris` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.kategoris: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.kategoris: ~5 rows (approximately)
 /*!40000 ALTER TABLE `kategoris` DISABLE KEYS */;
+INSERT INTO `kategoris` (`id`, `nm_kategori`, `created_at`, `updated_at`) VALUES
+	(1, 'Khazanah Islam', '2023-01-17 14:20:18', '2023-01-17 14:20:18'),
+	(2, 'Tafsir Qur\'an', '2023-01-17 14:20:36', '2023-01-17 14:20:36'),
+	(3, 'Hadist', '2023-01-17 14:21:19', '2023-01-17 14:21:19'),
+	(4, 'Fiqih', '2023-01-17 14:21:28', '2023-01-17 14:21:28'),
+	(5, 'Siroh Nabi', '2023-01-17 14:21:40', '2023-01-17 14:21:40');
 /*!40000 ALTER TABLE `kategoris` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.kegiatans
@@ -223,15 +299,18 @@ CREATE TABLE IF NOT EXISTS `kegiatans` (
   `tgl` date DEFAULT NULL,
   `waktu` time DEFAULT NULL,
   `video_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keg_kajian` enum('Y','N') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keterangan` text COLLATE utf8mb4_unicode_ci,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.kegiatans: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.kegiatans: ~1 rows (approximately)
 /*!40000 ALTER TABLE `kegiatans` DISABLE KEYS */;
+INSERT INTO `kegiatans` (`id`, `jeniskegiatan_id`, `mubaligh_id`, `nm_kegiatan`, `photo`, `tgl`, `waktu`, `video_url`, `keg_kajian`, `keterangan`, `created_by`, `created_at`, `updated_at`) VALUES
+	(1, 2, 4, 'Kajian Rutin Subuh Ahad Pagi 15 Januari 2023', 'img-kegiatan/8BbqSY6FcCra3lYvRkpysaO6SPujX5C3eO9JcWUF.jpg', '2023-01-15', '04:45:00', 'https://youtu.be/lJEqqsHPq4s', 'N', '<div>Hadirilah Kajian Rutin Ahad Pagi bersama Ustadz Rahmat Prihatin, S. Sos.<br>dengan Temah Siroh Nabi Muhammad SAW<br><br>Disediakan sarapan pagi</div>', 'Administrator', '2023-01-17 15:20:24', '2023-01-17 17:07:34');
 /*!40000 ALTER TABLE `kegiatans` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.level
@@ -244,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `level` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.level: ~9 rows (approximately)
+-- Dumping data for table intra_masjid.level: ~8 rows (approximately)
 /*!40000 ALTER TABLE `level` DISABLE KEYS */;
 INSERT INTO `level` (`id`, `level`, `deskripsi`, `created_at`, `updated_at`) VALUES
 	(1, 'bph', 'Badan Pengurus Harian', '2023-01-16 22:42:30', '2023-01-16 22:42:30'),
@@ -307,10 +386,15 @@ CREATE TABLE IF NOT EXISTS `mubalighs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.mubalighs: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.mubalighs: ~4 rows (approximately)
 /*!40000 ALTER TABLE `mubalighs` DISABLE KEYS */;
+INSERT INTO `mubalighs` (`id`, `nm_lengkap`, `email`, `hp`, `jk`, `alamat`, `photo`, `profil`, `peranmubaligh_id`, `created_at`, `updated_at`) VALUES
+	(1, 'Saepudin, M. Pd.', 'xxxxxx@gmail.com', '08128263573', 'L', 'Taman Alamanda Blok C8 No.', 'img-mubaligh/x72wRA79FyoSVfQ17oLo85mn8FiY8wiTLQTD6u4S.jpg', '<div>Profil Ustadz Saepudin, M. Pd</div>', 5, '2023-01-17 14:41:43', '2023-01-17 14:41:43'),
+	(2, 'Nurhadi, M. Pd', 'xxxxxx@gmail.com', '082210728904', 'L', 'Taman Alamanda Blok C8 No.', 'img-mubaligh/F02JZwR9WtpRuAaMvJqCe8VhLqlajpGOvkVsktmv.png', '<div>Profil Ustadz Nurhadi, M. Pd.</div>', 2, '2023-01-17 14:43:07', '2023-01-17 14:43:21'),
+	(3, 'Abbas', 'xxxxxx@gmail.com', '08161383868', 'L', 'Taman Alamanda Blok C', 'img-mubaligh/ddJVjzDLJ1zUN8zFellL5Ax8wnmb87xVjUj4sVIO.png', '<div>Profil Ustadz Abbas</div>', 2, '2023-01-17 14:44:33', '2023-01-17 14:44:48'),
+	(4, 'Rahmat Prihatin, S. Sos.', 'xxxxxx@gmail.com', '089628578057', 'L', 'Taman Alamanda Blok C', 'img-mubaligh/eeoiO9EorgcL3AvlPOqH8d58pZ0fMKuXMerEn2fw.png', '<div>Profil Ustadz Rahmat Prihatin, S. Sos.</div>', 5, '2023-01-17 14:46:41', '2023-01-17 14:46:41');
 /*!40000 ALTER TABLE `mubalighs` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.nasabah
@@ -380,7 +464,7 @@ CREATE TABLE IF NOT EXISTS `pengurus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.pengurus: ~4 rows (approximately)
+-- Dumping data for table intra_masjid.pengurus: ~3 rows (approximately)
 /*!40000 ALTER TABLE `pengurus` DISABLE KEYS */;
 INSERT INTO `pengurus` (`id`, `kd_pengurus`, `nm_pengurus`, `jk`, `no_hp`, `email`, `alamat`, `photo`, `id_jabatan`, `id_users`, `created_at`, `updated_at`) VALUES
 	(1, 'AFLXX3', 'Nurhadi, S.Pd.', 'L', '082210728904', 'xxxxxx@gmail.com', 'Taman Alamanda Blok C8 No.', NULL, 1, 9, '2023-01-17 00:36:24', '2023-01-17 00:36:24'),
@@ -419,10 +503,12 @@ CREATE TABLE IF NOT EXISTS `rekening` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.rekening: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.rekening: ~1 rows (approximately)
 /*!40000 ALTER TABLE `rekening` DISABLE KEYS */;
+INSERT INTO `rekening` (`id`, `no_rekening`, `pin`, `kd_jamaah`, `saldo`, `created_at`, `updated_at`) VALUES
+	(1, '99797585', 123456, 'JMHEXTL', 0, '2023-01-17 13:48:18', '2023-01-17 13:48:18');
 /*!40000 ALTER TABLE `rekening` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.topik_kajians
@@ -432,10 +518,14 @@ CREATE TABLE IF NOT EXISTS `topik_kajians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table intra_masjid.topik_kajians: ~0 rows (approximately)
+-- Dumping data for table intra_masjid.topik_kajians: ~3 rows (approximately)
 /*!40000 ALTER TABLE `topik_kajians` DISABLE KEYS */;
+INSERT INTO `topik_kajians` (`id`, `nm_topik_kajian`, `created_at`, `updated_at`) VALUES
+	(1, 'Kitab Riyadus Sholihin', '2023-01-17 14:37:30', '2023-01-17 14:37:52'),
+	(2, 'Siroh Nabi Muhammad SAW', '2023-01-17 15:24:06', '2023-01-17 15:27:35'),
+	(3, 'Hadist Arba\'in', '2023-01-17 16:23:10', NULL);
 /*!40000 ALTER TABLE `topik_kajians` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.transaksi
@@ -484,16 +574,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_users`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table intra_masjid.users: ~5 rows (approximately)
+-- Dumping data for table intra_masjid.users: ~6 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id_users`, `name`, `username`, `email`, `email_verified_at`, `password`, `level`, `is_active`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'Administrator', 'admin', 'ekselcorp@gmail.com', NULL, '$2y$10$sFjDfcoMSHEhj8U164NuqeNwOQfvQ2aULpcqzBdoA2hUZKEpPbkkS', 'admin', '1', NULL, '2023-01-16 23:45:57', '2022-12-16 20:16:03'),
 	(9, 'Nurhadi, S.Pd.', 'nurhadi', 'xxxxxx@gmail.com', NULL, '$2y$10$QdixDYyx5PQmpuBAv8lCpOip8enRqzEYRBaM6eIXQmFoWSNE27W6q', 'bph', '1', NULL, '2023-01-17 00:36:24', '2023-01-17 00:41:26'),
 	(10, 'Gunawan Ashari, SE.', 'gunawan', 'gunawanashari@mail.com', NULL, '$2y$10$JBx/0y6yWLiQFPaR9DNckexE3nKx8q144SKF7FwaDFQGkZdLfPZsq', 'bendahara', '1', NULL, '2023-01-17 00:43:16', '2023-01-17 00:44:03'),
 	(11, 'Ahmad Hidayat', 'ahmadhidayat', 'ahmadhidayat@gmail.com', NULL, '$2y$10$FAop3G2G7aX00l9jZw.OdOeI83qZKXamxw7GHouETE3B6TT64rEMW', 'pengurus', '1', NULL, '2023-01-17 00:46:08', '2023-01-17 00:46:08'),
-	(12, 'Nurindra', 'nurindra', 'nurindra@gmail.com', NULL, '$2y$10$9BMXvff8kR0pa5AMTZpEMO/grdi/qBWJNUANA4ZciZ/VLaWfwxkZy', 'humasti', '1', NULL, '2023-01-17 08:38:42', '2023-01-17 08:39:10');
+	(12, 'Nurindra', 'nurindra', 'nurindra@gmail.com', NULL, '$2y$10$9BMXvff8kR0pa5AMTZpEMO/grdi/qBWJNUANA4ZciZ/VLaWfwxkZy', 'humasti', '1', NULL, '2023-01-17 08:38:42', '2023-01-17 08:39:10'),
+	(13, 'Warkim', 'warkim', 'x1syah@gmail.com', NULL, '$2y$10$shFevuOwbeBvcSFIvDh.8u8VHezBWr2eLOVzpMpRWgp0fy/Ov4QEi', 'jamaah', '1', NULL, '2023-01-17 13:48:18', '2023-01-17 13:48:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table intra_masjid.yatim_duafas

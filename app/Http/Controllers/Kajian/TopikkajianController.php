@@ -26,7 +26,12 @@ class TopikkajianController extends Controller
 
     public function store(Request $request)
     {
-        Topikkajian::create($request->all());
+        $validateData = $request->validate([
+            'nm_topik_kajian' => 'required|max:255',
+        ]);
+
+        Topikkajian::create($validateData);
+        
         return redirect()->route('topikkajian.index')->with('success', 'Data Topik Kajian Berhasil disimpan');
     }
 

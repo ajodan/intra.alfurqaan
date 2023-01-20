@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-'title' => 'Manage Rekening',
-'contentTitle' => 'Manage Rekening',
+'title' => 'Daftar Aset/Inventaris',
+'contentTitle' => 'Daftar Aset/Inventaris',
 ])
 
 @push('css')
@@ -15,7 +15,7 @@
 <!-- DataTables -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <a href="{{ route('admin.rekening.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
+    <a href="{{ route('aset.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -23,10 +23,11 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Nama Jamaah</th>
-            <th>No Rekening</th>
-            <th>Kode Jamaah</th>
-            <th>Saldo</th>
+            <th>Nama Aset</th>
+            <th>Jumlah Aset</th>
+            <th>Satuan</th>
+            <th>Tanggal Perolehan</th>
+            <th>Photo</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -34,17 +35,22 @@
           @php
           $no=1;
           @endphp
-          @foreach($rekening as $rkn)
+          @foreach($asets as $aset)
           <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $rkn->nm_pengurus }}</td>
-            <td>{{ $rkn->no_rekening }}</td>
-            <td>{{ $rkn->kd_pengurus }}</td>
-            <td>Rp.@toRupiah($rkn->saldo)</td>
+            <td>{{ $aset->nm_aset }}</td>
+            <td>{{ $aset->jumlah }}</td>
+            <td>{{ $aset->satuan }}</td>
+            <td>{{ \Carbon\Carbon::parse($aset->tgl_perolehan)->format('d-m-Y') }}</td>
+            @if($aset->photo)
+            <td><img src="{{ asset('storage/'.$aset->photo) }}" style="height: 100px; width: 120px;"></td>
+            @else
+            <td><img src="{{ asset('img/no-image.png') }}" style="height: 100px; width: 120px;"></td>
+            @endif
             <td>
               <div class="row ml-3">
-                <a href="{{ route('admin.rekening.edit',$rkn->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                <form method="POST" action="{{ route('admin.rekening.destroy',$rkn->id) }}">
+                <a href="{{ route('aset.edit',$aset->id) }}" class="btn btn-primary btn-sm">Ubah</a>
+                <form method="POST" action="{{ route('aset.destroy',$aset->id) }}">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger btn-sm ml-2" onclick="return confirm('Yakin hapus ?')" type="submit">Hapus</button>

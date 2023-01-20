@@ -47,12 +47,17 @@ use App\Http\Controllers\Kasmasjid\LaporansaldokasController;
 use App\Http\Controllers\Kasmasjid\JenistransaksiController;
 
 use App\Http\Controllers\Kajian\TopikkajianController;
+use App\Http\Controllers\Kajian\KajianController;
 
 use App\Http\Controllers\Kegiatan\KategoriController;
 use App\Http\Controllers\Kegiatan\ArtikelController;
 
 use App\Http\Controllers\Kegiatan\JeniskegiatanController;
 use App\Http\Controllers\Kegiatan\MubalighController;
+
+use App\Http\Controllers\Prasarana\JenisasetController;
+use App\Http\Controllers\Prasarana\NamaasetController;
+use App\Http\Controllers\Prasarana\AsetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -238,7 +243,7 @@ Route::group(['prefix' => 'kasmasjid', 'middleware' => ['auth', 'can:bendahara']
 });
 
 //Route Group Kegiatan 
-Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:ibadah']], function () {
+Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:dakwah']], function () {
 	Route::namespace('Kegiatan')->group(function () {
 
 		//Jenis Kegiatan
@@ -260,12 +265,26 @@ Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:ibadah']], f
 });
 
 //Route Group Kajian 
-Route::group(['prefix' => 'kajian', 'middleware' => ['auth', 'can:ibadah']], function () {
+Route::group(['prefix' => 'kajian', 'middleware' => ['auth', 'can:dakwah']], function () {
 	Route::namespace('Kajian')->group(function () {
 
 		//Topik Kajian
 		Route::resource('topikkajian', 'TopikkajianController');
 		//Kajian
 		Route::resource('kajian', 'KajianController');
+	});
+});
+
+//Route Group Prasarana 
+Route::group(['prefix' => 'prasarana', 'middleware' => ['auth', 'can:rumahtangga']], function () {
+	Route::namespace('Prasarana')->group(function () {
+
+		//Jenis Aset
+		Route::resource('jenisaset', 'JenisasetController');
+		//Nama Aset
+		Route::resource('namaaset', 'NamaasetController');
+		//Nama Aset
+		Route::resource('aset', 'AsetController');
+		
 	});
 });

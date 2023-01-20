@@ -13,24 +13,22 @@
     </a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i>
-                </a></li>
+            <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-left">
             <div class="pro-head">
-                <!-- <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> -->
-                Selamat Datang, <b><span>{{ Auth::user()->name }}</span></b>
+                {{-- <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> --}}
             </div>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown drp-user">
                     <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon feather icon-settings"></i>
+                        <b><span>{{ Auth::user()->name }}</span></b>&nbsp;&nbsp;<i class="icon feather icon-settings"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
-                            <!-- <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                            <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-1.jpg" class="img-radius" alt="Photo Pengguna">
                             <span>{{ Auth::user()->name }}</span>
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#logoutModal" class="dud-logout" title="Logout">
                                 <i class="feather icon-log-out"></i>

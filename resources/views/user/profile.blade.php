@@ -20,6 +20,10 @@
 			<label>Email</label>
 			<input type="email" disabled="" value="{{ Auth::user()->email }}" class="form-control">
 		</div>
+		<div class="form-group">
+			<label>Level</label>
+			<input type="email" disabled="" value="{{ Auth::user()->level }}" class="form-control">
+		</div>
 	</x-card>
 
 	<x-card>
@@ -34,6 +38,10 @@
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input required name="username" id="username" type="text" value="{{ Auth::user()->username }}" class="form-control" disabled>
+			</div>
+			<div class="form-group">
+				<label for="level">Level</label>
+				<input required name="level" id="level" type="text" value="{{ Auth::user()->level }}" class="form-control" disabled>
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>

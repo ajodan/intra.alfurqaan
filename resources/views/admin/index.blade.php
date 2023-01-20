@@ -52,7 +52,7 @@
 <div class="row">
 	<div class="col-lg-8">
 		<div class="card">
-			<div class="card-header bg-dark text-white">Transaksi</div>
+			<div class="card-header bg-dark text-white">Transaksi Keuangan Masjid</div>
 			<div class="row ml-2">
 				<div class="card-body">
 					<h2>Saldo Kas Masjid : <b>Rp @toRupiah($total_transaksi)</b></h2>

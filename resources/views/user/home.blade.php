@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-	'title' => 'Home',
-    'contentTitle' => 'Home',
+	'title' => 'Beranda',
+    'contentTitle' => 'Beranda',
 ])
 @section('content')
 <div class="jumbotron">

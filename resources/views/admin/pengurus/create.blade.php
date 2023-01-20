@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label>Jabatan</label>
-                {!! Form::select('id_jabatan', $jabatan, '', ['class' => 'form-control','enctype'=>'multipart/form-data']) !!}
+                {!! Form::select('id_jabatan', $jabatans, '', ['class' => 'form-control','enctype'=>'multipart/form-data']) !!}
                 @if($errors->has('id_jabatan'))
                 <div class="text-danger">
                     {{ $errors->first('id_jabatan')}}

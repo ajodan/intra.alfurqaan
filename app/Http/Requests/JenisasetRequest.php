@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PengurusRequest extends FormRequest
+class JenisasetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class PengurusRequest extends FormRequest
     {
         return [
             'id' => 'required',
-            'nm_pengurus' => 'required'
+            'nm_jenis_aset' => 'required'
         ];
     }
 }

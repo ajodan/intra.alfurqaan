@@ -2,9 +2,8 @@
 'title' => 'Tambah Topik Kajian',
 'contentTitle' => 'Tambah Topik Kajian',
 ])
-@section('content')
-@include('layouts.components.alert-dismissible')
 
+@section('content')
 <!-- DataTales -->
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -12,7 +11,7 @@
             @csrf
             <div class="form-group">
                 <label for="id">ID</label>
-                <input required class="form-control" type="" name="id" id="id" value="{{$max}}" placeholder="">
+                <input class="form-control" type="" name="id" id="id" value="{{$max}}" placeholder="">
             </div>
             <div class="form-group">
                 <label for="nm_topik_kajian">Nama Topik Kajian</label>

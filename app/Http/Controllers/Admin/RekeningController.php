@@ -9,14 +9,15 @@ use App\Http\Requests\RekeningRequest as Request;
 
 use App\Models\Rekening;
 use App\Models\Jamaah;
+use App\Models\Pengurus;
 use DB;
 
 class RekeningController extends Controller
 {
     public function index()
     {
-        $rekening = Rekening::join('jamaah', 'rekening.kd_jamaah', '=', 'jamaah.kd_jamaah')
-            ->select('rekening.*', 'jamaah.nm_jamaah', 'jamaah.kd_jamaah')
+        $rekening = Rekening::join('pengurus', 'rekening.kd_pengurus', '=', 'pengurus.kd_pengurus')
+            ->select('rekening.*', 'pengurus.nm_pengurus', 'pengurus.kd_pengurus')
             ->get();
         return view('admin.rekening.index', compact('rekening'));
     }

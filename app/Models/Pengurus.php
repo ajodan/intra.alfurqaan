@@ -12,6 +12,6 @@ class Pengurus extends Model
     protected $table = 'pengurus';
 
     protected $fillable = [
-        'kd_pengurus', 'nm_pengurus', 'jk', 'no_hp', 'email', 'alamat', 'id_jabatan', 'id_users',
+        'kd_pengurus', 'nm_pengurus', 'jk', 'no_hp', 'email', 'alamat', 'id_jabatan', 'id_users','photo',
     ];
 }

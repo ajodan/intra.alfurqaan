@@ -4,7 +4,7 @@
 ])
 
 @section('content')
-<!-- DataTales -->
+<!-- DataTables -->
 <div class="card shadow mb-4">
     <div class="card-body">
         <form action="{{ route('admin.jamaah.update',$jamaah->id) }}" method="post">

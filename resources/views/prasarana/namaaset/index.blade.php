@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-'title' => 'Manage Rekening',
-'contentTitle' => 'Manage Rekening',
+'title' => 'Daftar Nama Aset',
+'contentTitle' => 'Daftar Nama Aset',
 ])
 
 @push('css')
@@ -15,7 +15,7 @@
 <!-- DataTables -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <a href="{{ route('admin.rekening.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
+    <a href="{{ route('namaaset.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -23,10 +23,10 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Nama Jamaah</th>
-            <th>No Rekening</th>
-            <th>Kode Jamaah</th>
-            <th>Saldo</th>
+            <th>Jenis Aset</th>
+            <th>Kode Nama Aset</th>
+            <th>Nama Aset</th>
+            <th>Merk</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -34,17 +34,17 @@
           @php
           $no=1;
           @endphp
-          @foreach($rekening as $rkn)
+          @foreach($namaasets as $namaaset)
           <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $rkn->nm_pengurus }}</td>
-            <td>{{ $rkn->no_rekening }}</td>
-            <td>{{ $rkn->kd_pengurus }}</td>
-            <td>Rp.@toRupiah($rkn->saldo)</td>
+            <td>{{ $namaaset->nm_jenis_aset }}</td>
+            <td>{{ $namaaset->kd_aset }}</td>
+            <td>{{ $namaaset->nm_aset }}</td>
+            <td>{{ $namaaset->merk }}</td>
             <td>
               <div class="row ml-3">
-                <a href="{{ route('admin.rekening.edit',$rkn->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                <form method="POST" action="{{ route('admin.rekening.destroy',$rkn->id) }}">
+                <a href="{{ route('namaaset.edit',$namaaset->id) }}" class="btn btn-primary btn-sm">Ubah</a>
+                <form method="POST" action="{{ route('namaaset.destroy',$namaaset->id) }}">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger btn-sm ml-2" onclick="return confirm('Yakin hapus ?')" type="submit">Hapus</button>
@@ -81,7 +81,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
         <button type="submit" class="btn btn-primary">Import</button>
         </form>
       </div>

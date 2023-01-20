@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="hp">Nomor Ponsel</label>
-                <input type="text" class="form-control @error('hp') is-invalid @enderror" name="hp" id="hp" placeholder="Nomor Ponsel" autofocus value="{{ old('hp') }}">
+                <input type="text" class="form-control @error('hp') is-invalid @enderror" name="hp" id="hp" placeholder="Nomor Ponsel"  value="{{ old('hp') }}">
                 @error('hp')
                 <div class="invalid-feedback">
                     <p class="text-danger">{{ $message }}</p>
