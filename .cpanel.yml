@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ajodanwe/public_html/intra.alfurqaan.my.id
+    - export DEPLOYPATH=/home/ajodanwe/public_html/intra.alfurqaan.my.id/
     - /bin/cp -R intra $DEPLOYPATH
     - /bin/cp -R public $DEPLOYPATH
     - /bin/cp .cpanel.yml $DEPLOYPATH
