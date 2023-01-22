@@ -61,7 +61,7 @@ class PengurusController extends Controller
                 'name' => $request->nm_pengurus,
                 'password' => bcrypt('password'),
                 'email' => $request->email,
-                'level' => 'pengurus',
+                'level' => 'dkm',
                 'is_active' => '1',
             ]);
 
@@ -91,9 +91,9 @@ class PengurusController extends Controller
         return view('admin.pengurus.show', compact('pengurus'));
     }
 
-    public function edit(Pengurus $pengurus)
+    public function edit(Pengurus $penguruss)
     {
-        return view('admin.pengurus.edit', compact('pengurus'));
+        return view('admin.pengurus.edit', compact('penguruss'));
     }
 
     public function update(Request $request, Pengurus $pengurus)

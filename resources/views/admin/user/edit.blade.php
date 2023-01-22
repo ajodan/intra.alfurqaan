@@ -33,7 +33,7 @@
                 <div class="">
                     <select id="level" name="level" class="form-control">
                         @foreach ($level as $lev)
-                        @if(old('level', $user->level) == $lev->id)
+                        @if(old('level', $user->level) == $lev->level)
                         <option value="{{ $lev->level }}" selected>{{ $lev->level }}</option>
                         @else
                         <option value="{{ $lev->level }}">{{ $lev->level }}</option>

@@ -2068,7 +2068,7 @@ p.text-muted {
   width: 264px;
   height: 100vh;
   top: 0;
-  background: #3f4d67;
+  background: #024922;
   color: #a9b7d0;
 }
 .pcoded-navbar ul {
@@ -2147,7 +2147,7 @@ p.text-muted {
   position: absolute;
   left: 0;
   height: 2.8px;
-  background-color: #a9b7d0;
+  background-color: #e9ecf3;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-backface-visibility: hidden;

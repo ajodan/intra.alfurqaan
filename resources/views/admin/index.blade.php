@@ -75,13 +75,11 @@
 			<div class="card-header bg-primary text-white">Aksi Cepat</div>
 			<div class="card-body">
 				<div class="list-group">
-					<a href="{{ route('transfer.index') }}" class="list-group-item list-group-item-action">Transfer</a>
+					<a href="{{ route('artikel.index') }}" class="list-group-item list-group-item-action">Artikel</a>
 
-					<a href="{{ route('tarik.index') }}" class="list-group-item list-group-item-action">Tarik</a>
+					<a href="{{ route('kegiatan.index') }}" class="list-group-item list-group-item-action">Agenda Kegiatan</a>
 
-					<a href="{{ route('setor.index') }}" class="list-group-item list-group-item-action">Setor</a>
-
-					<a href="{{ route('saldo.index') }}" class="list-group-item list-group-item-action">Saldo</a>
+					<a href="{{ route('kajian.index') }}" class="list-group-item list-group-item-action">Kajian</a>
 				</div>
 			</div>
 		</div>

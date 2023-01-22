@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label for="nm_topik_kajian">Nama Topik Kajian</label>
-                <input class="form-control @error('nm_topik_kajian') is-invalid @enderror" type="text" name="nm_topik_kajian" id="nm_topik_kajian" placeholder="Nama Topik Kajian">
+                <input class="form-control @error('nm_topik_kajian') is-invalid @enderror" type="text" name="nm_topik_kajian" id="nm_topik_kajian" placeholder="Nama Topik Kajian" autofocus>
                 @error('nm_topik_kajian')
                 <div class="invalid-feedback">
                     {{ $message }}

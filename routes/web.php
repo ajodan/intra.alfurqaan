@@ -54,6 +54,7 @@ use App\Http\Controllers\Kegiatan\ArtikelController;
 
 use App\Http\Controllers\Kegiatan\JeniskegiatanController;
 use App\Http\Controllers\Kegiatan\MubalighController;
+use App\Http\Controllers\Kegiatan\JadwaljumatController;
 
 use App\Http\Controllers\Prasarana\JenisasetController;
 use App\Http\Controllers\Prasarana\NamaasetController;
@@ -248,6 +249,10 @@ Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:dakwah']], f
 
 		//Jenis Kegiatan
 		Route::resource('jeniskegiatan', 'JeniskegiatanController');
+
+		//Jadwal Jumat
+		Route::resource('jadwaljumat', 'JadwaljumatController');
+
 
 		//Kategori 
 		Route::resource('kategori', 'KategoriController');
