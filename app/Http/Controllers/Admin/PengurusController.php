@@ -25,9 +25,9 @@ class PengurusController extends Controller
 
     public function create()
     {
-        $jabatans = Jabatan::pluck('nm_jabatan', 'id');
-        return view('admin.pengurus.create', compact('jabatans'));
-       // return view('admin.pengurus.create', ['jabatan' => $jab]);
+        $jabatan = Jabatan::all();
+        // return view('admin.pengurus.create', compact('jabatans'));
+       return view('admin.pengurus.create', ['jabatan' => $jabatan]);
     }
 
     public function store(Request $request)
@@ -91,9 +91,11 @@ class PengurusController extends Controller
         return view('admin.pengurus.show', compact('pengurus'));
     }
 
-    public function edit(Pengurus $penguruss)
+    public function edit($id)
     {
-        return view('admin.pengurus.edit', compact('penguruss'));
+        $pengurus = Pengurus::where('id', $id)->get();
+        return view('admin.pengurus.edit', ['pengurus' => $pengurus]);
+        // return view('admin.pengurus.edit', compact('pengurus'));
     }
 
     public function update(Request $request, Pengurus $pengurus)

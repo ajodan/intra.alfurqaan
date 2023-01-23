@@ -66,7 +66,6 @@
                 </div> 
                 <div class="form-group">
                     <label for="keterangan">Profil Mubaligh/Ustadz</label>
-                   
                     <div class="form-group">
                         <input id="profil" type="hidden" name="profil" rows="20" cols="130" value="{{ old('profil') }}">
                         <trix-editor input="profil" class="form-control"></trix-editor>

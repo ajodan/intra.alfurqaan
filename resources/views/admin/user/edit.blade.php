@@ -7,7 +7,7 @@
 <!-- DataTales -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <form action="{{ route('admin.user.update',$user->id_users) }}" method="post">
+        <form action="{{ route('admin.user.update',$user->id_users) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="form-group">
@@ -53,10 +53,46 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="name">Photo <span class="required"></span></label>
+                <input type="hidden" name="oldPhoto" value="{{ $user->photo }}">
+                @if($user->photo)
+                <img src="{{ asset('storage/' . $user->photo) }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
+                @else
+                <img src="{{ asset('img/no-image.jpg') }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
+                @endif
+               
+                <div class="form-group">
+                    <input type="file" name="photo" id="photo" onchange="previewImage()" class="form-control" @error('photo') is-invalid @enderror>
+                    @error('photo')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">SIMPAN</button>
                 <a href="{{ route('admin.user.index') }}" class="btn btn-danger btn-sm">KEMBALI</a>
             </div>
         </form>
     </div>
 </div>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+<script>
+    function previewImage(){
+        const image = document.querySelector('#photo');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(photo.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+    
+    
+
+</script>
 @stop

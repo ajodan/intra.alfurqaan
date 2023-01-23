@@ -29,16 +29,22 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Jabatan</label>
-                {!! Form::select('id_jabatan', $jabatans, '', ['class' => 'form-control','enctype'=>'multipart/form-data']) !!}
-                @if($errors->has('id_jabatan'))
-                <div class="text-danger">
-                    {{ $errors->first('id_jabatan')}}
+                <label for="id_jabatan" class="">Jabatan</label>
+                <div class="">
+                    <select id="id_jabatan" name="id_jabatan" class="form-control">
+                        @foreach ($jabatan as $jab)
+                            @if(old('id_jabatan') == $jab->id)
+                            <option value="{{ $jab->id }}" selected>{{ $jab->nm_jabatan }}</option>
+                            @else
+                            <option value="{{ $jab->id }}">{{ $jab->nm_jabatan }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
-                @endif
             </div>
+
             <div class="form-group">
-                <label for="no_hp">No Hp</label>
+                <label for="no_hp">No Ponsel</label>
                 <input required class="form-control" type="number" name="no_hp" id="no_hp" placeholder="">
             </div>
             <!-- <div class="form-group">
@@ -53,6 +59,7 @@
                 <label for="alamat">Alamat Rumah</label>
                 <input required class="form-control" type="" name="alamat" id="alamat" placeholder="">
             </div>
+           
             <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">SIMPAN</button>
                 <a href="{{ route('admin.pengurus.index') }}" class="btn btn-danger btn-sm">Kembali</a>
@@ -60,4 +67,24 @@
         </form>
     </div>
 </div>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+<script>
+    function previewImage(){
+        const image = document.querySelector('#photo');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(photo.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+    
+    
+
+</script>
 @stop

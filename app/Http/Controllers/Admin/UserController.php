@@ -8,6 +8,7 @@ use Illuminate\Http\Request as DefaultRequest;
 use App\Events\UserDeleteEvent;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -43,9 +44,31 @@ class UserController extends Controller
 
     public function update(DefaultRequest $request, User $user)
     {
-        $password = $request->password ? bcrypt($request->password) : $request->old_password;
-        $request->request->add(['password' => $password]);
-        $user->update($request->all());
+       
+       // $user->update($request->all());
+       
+
+       $validateData = $request->validate([
+        'name' => 'required',
+        'username' => 'required',
+        'level' => 'required',
+        'is_active' => 'required',
+        'email' => 'required',
+        'photo' => 'image|file|max:1024',
+    ]);
+
+    if($request->file('photo')){
+        if($request->oldPhoto){
+            Storage::delete($request->oldPhoto);
+        }
+        $validateData['photo'] =  $request->file('photo')->store('img-user');
+    }
+
+    $password = $request->password ? bcrypt($request->password) : $request->old_password;
+       $request->request->add(['password' => $password]);
+    
+    User::where('id_users',$user->id_users)
+        ->update($validateData);
         return redirect()->route('admin.user.index')->with('success', 'Data berhasil diupdate');
     }
 
