@@ -27,8 +27,8 @@ class KajianController extends Controller
     public function create()
     {
         $topikkajian = Topikkajian::all();
-       // $kegiatan = Kegiatan::pluck('nm_kegiatan', 'id');
-        $kegiatan = Kegiatan::all();
+       $kegiatan = Kegiatan::where('keg_kajian', 'N')->get();
+       // $kegiatan = Kegiatan::where('keg_kajian','N');
         return view('kajian.kajian.create', compact('topikkajian', 'kegiatan'));
     }
 
@@ -38,6 +38,7 @@ class KajianController extends Controller
             'topikkajian_id' => 'required',
             'kegiatan_id' => 'required',
             'isi_kajian' => 'required',
+            
         ]);
 
         DB::transaction(function () use ($request) {
@@ -45,6 +46,7 @@ class KajianController extends Controller
                 'kegiatan_id' => $request->kegiatan_id,
                 'topikkajian_id' => $request->topikkajian_id,
                 'isi_kajian' => $request->isi_kajian,
+                'video_kajian' => $request->video_kajian,
                 'created_by' => Auth::user()->name
             ]);
         });
@@ -65,6 +67,11 @@ class KajianController extends Controller
     public function update(Request $request, Kajian $kajian)
     {
         $kajian->update($request->all());
+
+        $validateData['keg_kajian'] = 'Y';
+        Kegiatan::where('id',$request->kegiatan_id)
+        ->update($validateData);
+
         return redirect()->route('kajian.index')->with('success', 'Data Kajian berhasil diperbaharui');
     }
 

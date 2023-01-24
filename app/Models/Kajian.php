@@ -14,6 +14,6 @@ class Kajian extends Model
     protected $table = 'kajians';
 
     protected $fillable = [
-        'id', 'topikkajian_id', 'kegiatan_id', 'isi_kajian', 'created_by', 'created_at', 'updated_at',
+        'id', 'topikkajian_id', 'kegiatan_id', 'isi_kajian', 'video_kajian', 'created_by', 'created_at', 'updated_at',
     ];
 }

@@ -68,11 +68,11 @@
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kegiatan</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('jeniskegiatan.index') }}" class="">Jenis Kegiatan</a></li>
-                            <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori</a></li>
+                            <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori Artikel</a></li>
                             <li class=""><a href="{{ route('mubaligh.index') }}" class="">Mubaligh/Ustadz</a></li>
-                            <li class=""><a href="{{ route('jadwaljumat.index') }}" class="">Jadwal Jumat</a></li>
                             <li class=""><a href="{{ route('kegiatan.index') }}" class="">Agenda Kegiatan</a></li>
-                            <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel</a></li>
+                            <li class=""><a href="{{ route('jadwaljumat.index') }}" class="">Jadwal Jumat</a></li>
+                            <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel/Berita</a></li>
                         </ul>
                     </li>
                  <!-- Role Pendidikan dan Dakwah -->
@@ -100,10 +100,12 @@
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kegiatan</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('jeniskegiatan.index') }}" class="">Jenis Kegiatan</a></li>
-                            <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori</a></li>
+                            <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori Artikel</a></li>
                             <li class=""><a href="{{ route('mubaligh.index') }}" class="">Mubaligh/Ustadz</a></li>
                             <li class=""><a href="{{ route('kegiatan.index') }}" class="">Agenda Kegiatan</a></li>
-                            <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel</a></li>
+                            <li class=""><a href="{{ route('jadwaljumat.index') }}" class="">Jadwal Jumat</a></li>
+                            <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel/Berita</a></li>
+                            
                         </ul>
                     </li>
                  <!-- Role Pendidikan dan Dakwah -->
@@ -176,11 +178,11 @@
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kegiatan</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('jeniskegiatan.index') }}" class="">Jenis Kegiatan</a></li>
-                            <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori</a></li>
+                            <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori Artikel</a></li>
                             <li class=""><a href="{{ route('mubaligh.index') }}" class="">Mubaligh/Ustadz</a></li>
-                            <li class=""><a href="{{ route('jadwaljumat.index') }}" class="">Jadwal Jumat</a></li>
                             <li class=""><a href="{{ route('kegiatan.index') }}" class="">Agenda Kegiatan</a></li>
-                            <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel</a></li>
+                            <li class=""><a href="{{ route('jadwaljumat.index') }}" class="">Jadwal Jumat</a></li>
+                            <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel/Berita</a></li>
                         </ul>
                     </li>
                  <!-- Role Pendidikan dan Dakwah -->

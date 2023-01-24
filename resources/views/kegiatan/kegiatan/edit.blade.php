@@ -67,7 +67,7 @@
             </div>    
             @enderror
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="video_url">Video URL</label>
             <input class="form-control" type="text" name="video_url" id="video_url" placeholder="Link Video URL" value="{{ old('video_url', $kegiatan->video_url) }}">
         </div>
@@ -75,7 +75,7 @@
         <div class="invalid-feedback">
             <p class="text-danger">{{ $message }}</p>
         </div>    
-        @enderror
+        @enderror --}}
         
         <div class="form-group">
             <label for="keterangan">Deskripsi</label>
@@ -86,11 +86,11 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="keg_kajian" class="">Kegiatan Kajian</label>
+            <label for="keg_kajian" class="">Dokumentasi Kajian</label>
             <div class="">
                 <select id="keg_kajian" name="keg_kajian" class="form-control @error('keg_kajian') is-invalid @enderror" value="{{ old('keg_kajian', $kegiatan->keg_kajian) }}">
-                    <option value="Y" {{ $kegiatan->keg_kajian == 'Y' ? 'selected' : '' }}>Ya</option>
-                    <option value="N" {{ $kegiatan->keg_kajian == 'N' ? 'selected' : '' }}>Tidak</option>
+                    <option value="Y" {{ $kegiatan->keg_kajian == 'Y' ? 'selected' : '' }}>Sudah</option>
+                    <option value="N" {{ $kegiatan->keg_kajian == 'N' ? 'selected' : '' }}>Belum</option>
                 </select>
             </div>
         </div>

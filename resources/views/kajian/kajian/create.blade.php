@@ -15,11 +15,12 @@
                 <label for="kegiatan_id" class="">Nama Kegiatan</label>
                 <div class="">
                     <select id="kegiatan_id" name="kegiatan_id" class="form-control">
+                        <option value="" selected>-- Pilih Kegiatan --</option>
                         @foreach ($kegiatan as $keg)
                             @if(old('kegiatan_id') == $keg->id)
-                            <option value="{{ $keg->id }}" selected>{{ $keg->nm_jenis_kegiatan }}</option>
+                            <option value="{{ $keg->id }}" selected>{{ $keg->nm_kegiatan }}</option>
                             @else
-                            <option value="{{ $keg->id }}">{{ $keg->nm_jenis_kegiatan }}</option>
+                            <option value="{{ $keg->id }}">{{ $keg->nm_kegiatan }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -49,7 +50,12 @@
                 @error('isi_kajian')
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
-
+            </div>
+           <div class="form-group">
+                <label for="video_kajian">URL Video Kajian</label>
+                <input class="form-control" type="text" name="video_kajian" id="video_kajian" placeholder="Link Video URL" value="{{ old('video_kajian') }}">
+            </div>
+            
             <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
                 <a href="{{ route('kajian.index') }}" class="btn btn-danger btn-sm">Kembali</a>

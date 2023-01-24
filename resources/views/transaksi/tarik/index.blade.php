@@ -45,7 +45,8 @@
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-primary">KONFIRMASI</button>
+						<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+						<button type="button" class="btn btn-sm btn-danger" onclick="history.back(-1)">Kembali</button>
 					</div>
 				</form>
 			</div>

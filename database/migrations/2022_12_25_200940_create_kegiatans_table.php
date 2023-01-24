@@ -24,6 +24,7 @@ class CreateKegiatansTable extends Migration
             $table->string('video_url')->nullable();
             $table->enum('keg_kajian',['Y','N'])->nullable();
             $table->string('keterangan')->nullable();
+            $table->text('dokumentasi')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();
         });

@@ -74,10 +74,10 @@
                 </div>    
                 @enderror
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="video_url">Video URL</label>
                 <input class="form-control" type="text" name="video_url" id="video_url" placeholder="Link Video URL" value="{{ old('video_url') }}">
-            </div>
+            </div> --}}
             
             <div class="form-group">
                 <label for="keterangan">Deskripsi</label>
@@ -87,10 +87,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="keg_kajian">Kegiatan Kajian</label>
+                <label for="keg_kajian">Dokumentasi Kajian</label>
                 <select required="" class="form-control" name="keg_kajian" id="keg_kajian">
-                    <option value="Y">Ya</option>
-                    <option value="N">Tidak</option>
+                    <option value="N" selected>Belum</option>
+                    <option value="Y">Sudah</option>
                 </select>
             </div>
            

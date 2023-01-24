@@ -43,7 +43,8 @@
                 <label for="isi_kajian">Isi Kajian</label>
                
                 <div class="form-group">
-                    <input id="isi_kajian" type="hidden" name="isi_kajian" rows="20" cols="130" value="{{ old('isi_kajian', $item->isi_kajian) }}">
+                    <input id="isi_kajian" type="text" name="isi_kajian" rows="20" cols="130" value="{{ old('isi_kajian', $item->isi_kajian) }}">
+                    <input id="keg_kajian" type="hidden" name="keg_kajian" rows="20" cols="130" value="Y">
                     <trix-editor input="isi_kajian" class="form-control"></trix-editor>
                 </div>
             </div>

@@ -18,6 +18,7 @@ class CreateKajiansTable extends Migration
             $table->bigInteger('topikkajian_id')->nullable();
             $table->bigInteger('kegiatan_id')->nullable();
             $table->text('isi_kajian')->nullable();
+            $table->text('video_kajian')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();
         });

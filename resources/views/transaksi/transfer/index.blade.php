@@ -55,10 +55,9 @@
 					<div class="form-group">
 						<label for="jns_pembayaran">Jenis Pembayaran</label>
 						<select required="" name="jns_pembayaran" id="jns_pembayaran" class="form-control">
-							<option disabled="" selected="">- PILIH JENIS PEMBAYARAN -</option>
-							<option value="spp">SPP</option>
-							<option value="bangunan">BANGUNAN</option>
-							<option value="dll">DLL</option>
+							<option disabled="" selected="">- Pilih Jenis Pembayaran -</option>
+							<option value="bayarpinjaman">Bayar Pinjaman</option>
+							<option value="dll">Dan Lain-Lain</option>
 						</select>
 					</div>
 
@@ -77,7 +76,8 @@
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-primary">KONFIRMASI</button>
+						<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+						<button type="button" class="btn btn-sm btn-danger" onclick="history.back(-1)">Kembali</button>
 					</div>
 				</form>
 			</div>
