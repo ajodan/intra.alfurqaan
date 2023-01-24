@@ -25,6 +25,22 @@
 			<label>Email</label>
 			<input type="email" disabled="" value="{{ Auth::user()->email }}" class="form-control">
 		</div>
+		<div class="form-group">
+			<label for="name">Photo <span class="required"></span></label>
+			<input type="hidden" name="oldPhoto" value="{{ Auth::user()->photo }}">
+			@if(Auth::user()->photo)
+			<img src="{{ asset('storage/' . Auth::user()->photo) }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
+			@else
+			<img src="{{ asset('img/no-image.jpg') }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
+			@endif
+		   
+			{{-- <div class="form-group">
+				<input type="file" name="photo" id="photo" onchange="previewImage()" class="form-control" @error('photo') is-invalid @enderror>
+				@error('photo')
+				<p class="text-danger">{{ $message }}</p>
+				@enderror
+			</div> --}}
+		</div>
 	</x-card>
 
 	<x-card>
@@ -48,22 +64,7 @@
 				<label for="email">Email</label>
 				<input required name="email" id="email" type="email" value="{{ Auth::user()->email }}" class="form-control" autofocus>
 			</div>
-			<div class="form-group">
-                <label for="name">Photo <span class="required"></span></label>
-                <input type="hidden" name="oldPhoto" value="{{ Auth::user()->photo }}">
-                @if(Auth::user()->photo)
-                <img src="{{ asset('storage/' . Auth::user()->photo) }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
-                @else
-                <img src="{{ asset('img/no-image.jpg') }}" class="img-preview img-fluid mb-3 com-sm-5 d-block">
-                @endif
-               
-                {{-- <div class="form-group">
-                    <input type="file" name="photo" id="photo" onchange="previewImage()" class="form-control" @error('photo') is-invalid @enderror>
-                    @error('photo')
-                    <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div> --}}
-            </div>
+			
 		</x-edit>
 	</x-card>
 </div>
