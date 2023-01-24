@@ -94,8 +94,9 @@ class PengurusController extends Controller
     public function edit($id)
     {
         $pengurus = Pengurus::where('id', $id)->get();
-        return view('admin.pengurus.edit', ['pengurus' => $pengurus]);
-        // return view('admin.pengurus.edit', compact('pengurus'));
+        $jabatan = Jabatan::all();
+        // return view('admin.pengurus.edit', ['pengurus' => $pengurus],['jabatan' => $jabatan]);
+        return view('admin.pengurus.edit', compact('pengurus','jabatan'));
     }
 
     public function update(Request $request, Pengurus $pengurus)

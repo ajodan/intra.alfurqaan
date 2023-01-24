@@ -76,7 +76,7 @@
                         </ul>
                     </li>
                  <!-- Role Pendidikan dan Dakwah -->
-                  <li class="nav-item {{ Request::is('dakwah') ? 'active' : '' }} pcoded-hasmenu">
+                <li class="nav-item {{ Request::is('dakwah') ? 'active' : '' }} pcoded-hasmenu">
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kajian</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('topikkajian.index') }}" class="">Topik Kajian</a></li>
@@ -117,7 +117,48 @@
                         </ul>
                 </li>
                 @endif
-<!-- Menu Role BMM -->
+                <!-- Menu Role bph -->
+            @if(auth()->user()->level=='bph')
+                <!-- Role Rumatangga -->
+                <li class="nav-item {{ Request::is('bendahara') ? 'active' : '' }} pcoded-hasmenu">
+                <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kas Masjid</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{{ route('jenistransaksi.index') }}" class="">Jenis Transaksi</a></li>
+                        <li class=""><a href="{{ route('kasmasjid.index') }}" class="">Transaksi</a></li>
+                        
+                    </ul>
+                </li>
+                
+                <li class="nav-item {{ Request::is('dakwah') ? 'active' : '' }} pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Aset/Inventaris</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="{{ route('jenisaset.index') }}" class="">Jenis Inventaris</a></li>
+                            <li class=""><a href="{{ route('namaaset.index') }}" class="">Nama Aset</a></li>
+                            <li class=""><a href="{{ route('aset.index') }}" class="">Aset/Inventaris</a></li>
+                        </ul>
+                    </li>
+                <!-- Role Pendidikan dan Dakwah -->
+                <li class="nav-item {{ Request::is('dakwah') ? 'active' : '' }} pcoded-hasmenu">
+                <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kegiatan</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{{ route('jeniskegiatan.index') }}" class="">Jenis Kegiatan</a></li>
+                        <li class=""><a href="{{ route('kategori.index') }}" class="">Kategori Artikel</a></li>
+                        <li class=""><a href="{{ route('mubaligh.index') }}" class="">Mubaligh/Ustadz</a></li>
+                        <li class=""><a href="{{ route('kegiatan.index') }}" class="">Agenda Kegiatan</a></li>
+                        <li class=""><a href="{{ route('jadwaljumat.index') }}" class="">Jadwal Jumat</a></li>
+                        <li class=""><a href="{{ route('artikel.index') }}" class="">Artikel/Berita</a></li>
+                    </ul>
+                </li>
+                <!-- Role Pendidikan dan Dakwah -->
+                <li class="nav-item {{ Request::is('dakwah') ? 'active' : '' }} pcoded-hasmenu">
+                <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kajian</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{{ route('topikkajian.index') }}" class="">Topik Kajian</a></li>
+                        <li class=""><a href="{{ route('kajian.index') }}" class="">Kajian</a></li>
+                    </ul>
+                </li>
+            @endif
+                <!-- Menu Role BMM -->
                 @if(auth()->user()->level=='bmm')
                 <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Tabungan</label>
@@ -146,12 +187,11 @@
                 <li class="nav-item {{ Request::is('bendahara') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Kas Masjid</label>
                 </li>
-
-                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? '' : '' }}">
-                    <a href="{{ route('kasmasjid.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
-                </li>
                 <li class="nav-item {{ Request::segment(1) == 'jenistransaksi' ? '' : '' }}">
                     <a href="{{ route('jenistransaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
+                </li>
+                <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? '' : '' }}">
+                    <a href="{{ route('kasmasjid.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
                 @endif
 
