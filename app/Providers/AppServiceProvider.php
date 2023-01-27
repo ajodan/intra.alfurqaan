@@ -52,6 +52,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->level == 'bph';
         });
 
+        Gate::define('dakwah', function ($user) {
+            return $user->level == 'dakwah';
+        });
+
         Gate::before(function ($user) {
             if ($user->level == 'admin') {
                 return true;
@@ -60,6 +64,12 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::before(function ($user) {
             if ($user->level == 'rumahtangga') {
+                return true;
+            }
+        });
+
+        Gate::before(function ($user) {
+            if ($user->level == 'dakwah') {
                 return true;
             }
         });
