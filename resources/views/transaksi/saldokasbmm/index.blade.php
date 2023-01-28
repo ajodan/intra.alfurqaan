@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-'title' => 'Saldo Kas',
-'contentTitle' => 'Saldo Kas',
+'title' => 'Saldo Kas BMM',
+'contentTitle' => 'Saldo Kas BMM',
 ])
 
 @push('css')
@@ -16,7 +16,7 @@
   <div class="col-lg-12">
     @if($histori_saldo->count() > 0)
     <div class="card">
-      <div class="card-header">Daftar Saldo Kas Masjid</div>
+      <div class="card-header">Daftar Saldo Kas BMM</div>
       <div class="card-body table-responsive">
         <table id="dataTable1" class="table">
           <thead>
