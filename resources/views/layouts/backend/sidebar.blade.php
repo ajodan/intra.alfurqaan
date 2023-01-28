@@ -159,7 +159,7 @@
                 </li>
             @endif
                 <!-- Menu Role BMM -->
-                @if(auth()->user()->level=='bmm')
+            @if(auth()->user()->level=='bmm')
                 <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Tabungan</label>
                 </li>
@@ -181,7 +181,10 @@
                 <li class="nav-item {{ Request::segment(1) == 'jenistransaksibmm' ? '' : '' }}">
                     <a href="{{ route('jenistransaksibmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
                 </li>
-                @endif
+                <li class="nav-item {{ Request::segment(1) == 'download' ? '' : '' }}">
+                    <a href="https://drive.google.com/file/d/10eqInMmbKRY5Yhi5yn7FX0gGwMed7BWE/view" target="_blank" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Panduan </a>
+                </li>
+            @endif
 <!-- Menu Role Bendahara DKM -->
                 @if(auth()->user()->level=='bendahara')
                 <li class="nav-item {{ Request::is('bendahara') ? 'active' : '' }} pcoded-menu-caption">
@@ -193,8 +196,12 @@
                 <li class="nav-item {{ Request::segment(1) == 'kasmasjid' ? '' : '' }}">
                     <a href="{{ route('kasmasjid.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
                 </li>
+                <li class="nav-item {{ Request::segment(1) == 'download' ? '' : '' }}">
+                    <a href="https://drive.google.com/file/d/16XTAFjGHri3Fj3CZ3R_Kq7--pqydujQW/view" target="_blank" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Panduan </a>
+                </li>
                 @endif
-
+              
+                
 <!-- Menu Role Rumah Tangga -->
                 @if(auth()->user()->level=='rumahtangga')
                 <li class="nav-item {{ Request::is('rumahtangga') ? 'active' : '' }} pcoded-menu-caption">
@@ -208,6 +215,9 @@
                 </li>
                 <li class="nav-item {{ Request::segment(1) == 'aset' ? '' : '' }}">
                     <a href="{{ route('aset.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Aset/Inventaris</span></a>
+                </li>
+                <li class="nav-item {{ Request::segment(1) == 'download' ? '' : '' }}">
+                    <a href="https://drive.google.com/file/d/1wZ5a09Xs7UW24ZTNo7q4LHAuNVSywNwS/view" target="_blank" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Panduan </a>
                 </li>
                
                 @endif
@@ -232,6 +242,9 @@
                             <li class=""><a href="{{ route('topikkajian.index') }}" class="">Topik Kajian</a></li>
                             <li class=""><a href="{{ route('kajian.index') }}" class="">Kajian</a></li>
                         </ul>
+                </li>
+                <li class="nav-item {{ Request::segment(1) == 'dakwah' ? '' : '' }}">
+                    <a href="https://drive.google.com/file/d/1EHG6Wi2_lxCuRXjkiH3uLSyFPzFYAE1h/view" target="_blank" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Panduan </a>
                 </li>
                 @endif
 
