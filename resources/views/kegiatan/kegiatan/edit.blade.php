@@ -67,7 +67,7 @@
             </div>    
             @enderror
         </div>
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label for="video_url">Video URL</label>
             <input class="form-control" type="text" name="video_url" id="video_url" placeholder="Link Video URL" value="{{ old('video_url', $kegiatan->video_url) }}">
         </div>
@@ -75,7 +75,7 @@
         <div class="invalid-feedback">
             <p class="text-danger">{{ $message }}</p>
         </div>    
-        @enderror --}}
+        @enderror
         
         <div class="form-group">
             <label for="keterangan">Deskripsi</label>

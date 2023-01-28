@@ -82,9 +82,10 @@ class KegiatanController extends Controller
             'waktu' => 'required',
             'jeniskegiatan_id' => 'required',
             'mubaligh_id' => 'required',
+          //  'keg_kajian' => 'required',
             'video_url' => 'required',
             'keterangan' => 'required',
-           // 'photo' => 'required|image|file|max:1024',
+            'photo' => 'image|file|max:1024',
         ]);
 
         if($request->file('photo')){
