@@ -14,6 +14,6 @@ class Topikkajian extends Model
     protected $table = 'topik_kajians';
 
     protected $fillable = [
-        'id', 'nm_topik_kajian', 'created_at', 'updated_at',
+        'id', 'nm_topik_kajian',
     ];
 }

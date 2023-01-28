@@ -253,7 +253,6 @@ Route::group(['prefix' => 'kegiatan', 'middleware' => ['auth', 'can:dakwah']], f
 		//Jadwal Jumat
 		Route::resource('jadwaljumat', 'JadwaljumatController');
 
-
 		//Kategori 
 		Route::resource('kategori', 'KategoriController');
 		//Mubaligh
@@ -280,7 +279,7 @@ Route::group(['prefix' => 'kajian', 'middleware' => ['auth', 'can:dakwah']], fun
 	});
 });
 
-//Route Group Prasarana 
+//Route Group Rumah Tangga 
 Route::group(['prefix' => 'prasarana', 'middleware' => ['auth', 'can:rumahtangga']], function () {
 	Route::namespace('Prasarana')->group(function () {
 

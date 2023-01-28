@@ -17,7 +17,7 @@
         </ul>
         <ul class="navbar-nav ml-left">
             <div class="pro-head">
-                {{-- <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> --}}
+                {{-- <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-2.jpg" class="img-radius" alt="User-Profile-Image"> --}}
             </div>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -28,7 +28,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
-                            <img src="{{ asset('templates/backend/datta-lite') }}/assets/images/user/avatar-1.jpg" class="img-radius" alt="Photo Pengguna">
+                            <img src="{{ asset('storage/' . Auth::user()->photo) }}" class="img-radius" alt="Photo Pengguna">
                             <span>{{ Auth::user()->name }}</span>
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#logoutModal" class="dud-logout" title="Logout">
                                 <i class="feather icon-log-out"></i>
@@ -36,7 +36,7 @@
                         </div>
                         <ul class="pro-body">
                             <li><a href="{{ route('user.profile.index') }}" class="dropdown-item"><i class="feather icon-user"></i> Profil</a></li>
-                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#logoutModal" class="dropdown-item"><i class="feather icon-log-out"></i> Logout</a></li>
+                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#logoutModal" class="dropdown-item"><i class="feather icon-log-out"></i> Keluar</a></li>
                         </ul>
                     </div>
                 </div>
