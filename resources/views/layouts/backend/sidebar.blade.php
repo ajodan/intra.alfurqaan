@@ -15,7 +15,7 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Menu Admin</label>
                 </li>
-                 <!-- Role Admin -->
+<!-- Role Admin -->
                 <li class="nav-item {{ Request::is('admin') || Request::is('admin/dashboard') ? 'active' : '' }}">
                     <a href="{{ route('admin.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Beranda</span></a>
                 </li>
@@ -84,6 +84,7 @@
                         </ul>
                 </li>
                 @endif
+
 <!-- Menu Role HUMASTI -->
                 @if(auth()->user()->level=='humasti')
                   <!-- Role Rumatangga -->
@@ -117,24 +118,60 @@
                         </ul>
                 </li>
                 @endif
-                <!-- Menu Role bph -->
+
+<!-- Menu Role bph -->
             @if(auth()->user()->level=='bph')
-                <!-- Role Rumatangga -->
+                <!-- Role Bendahara -->
                 <li class="nav-item {{ Request::is('bendahara') ? 'active' : '' }} pcoded-hasmenu">
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Kas Masjid</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="{{ route('jenistransaksi.index') }}" class="">Jenis Transaksi</a></li>
                         <li class=""><a href="{{ route('kasmasjid.index') }}" class="">Transaksi</a></li>
-                        
+                        <li class=""><a href="https://drive.google.com/file/d/16XTAFjGHri3Fj3CZ3R_Kq7--pqydujQW/view" target="_blank"" class="">Panduan Bendahara</a></li>
                     </ul>
                 </li>
+
+                <!-- Role BMM -->
+                <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Menu Tabungan</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
+                                <a href="{{ route('transaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
+                            </li>
+                            <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
+                                <a href="{{ route('laporan.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Laporan</span></a>
+                            </li>       
+                        </ul>
+                </li>
+                <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Menu Kas BMM</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="nav-item {{ Request::segment(1) == 'kasbmm' ? '' : '' }}">
+                                <a href="{{ route('transaksi.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
+                            </li>
+                            <li class="nav-item {{ Request::segment(1) == 'transaksi' ? '' : '' }}">
+                                <a href="{{ route('laporan.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Laporan</span></a>
+                            </li>  
+                            <li class="nav-item {{ Request::segment(1) == 'kasbmm' ? '' : '' }}">
+                                <a href="{{ route('kasbmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Transaksi</span></a>
+                            </li>
+            
+                            <li class="nav-item {{ Request::segment(1) == 'jenistransaksibmm' ? '' : '' }}">
+                                <a href="{{ route('jenistransaksibmm.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Jenis Transaksi</span></a>
+                            </li>
+                            <li class="nav-item {{ Request::segment(1) == 'jenistransaksibmm' ? '' : '' }}">
+                                <a href="https://drive.google.com/file/d/10eqInMmbKRY5Yhi5yn7FX0gGwMed7BWE/view" target="_blank" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Panduan BMM</span></a>
+                            </li> 
+                        </ul>
+                </li>
                 
-                <li class="nav-item {{ Request::is('dakwah') ? 'active' : '' }} pcoded-hasmenu">
+                <li class="nav-item {{ Request::is('rumahtangga') ? 'active' : '' }} pcoded-hasmenu">
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">Aset/Inventaris</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('jenisaset.index') }}" class="">Jenis Inventaris</a></li>
                             <li class=""><a href="{{ route('namaaset.index') }}" class="">Nama Aset</a></li>
                             <li class=""><a href="{{ route('aset.index') }}" class="">Aset/Inventaris</a></li>
+                            <li class=""><a href="https://drive.google.com/file/d/1wZ5a09Xs7UW24ZTNo7q4LHAuNVSywNwS/view" target="_blank" " class="">Panduan Rumah Tangga</a></li>
                         </ul>
                     </li>
                 <!-- Role Pendidikan dan Dakwah -->
@@ -155,10 +192,13 @@
                     <ul class="pcoded-submenu">
                         <li class=""><a href="{{ route('topikkajian.index') }}" class="">Topik Kajian</a></li>
                         <li class=""><a href="{{ route('kajian.index') }}" class="">Kajian</a></li>
+                        <li class=""><a href="https://drive.google.com/file/d/1EHG6Wi2_lxCuRXjkiH3uLSyFPzFYAE1h/view" target="_blank"" class="">Panduan Ibadah & Dakwah </a></li>
+                       
                     </ul>
                 </li>
             @endif
-                <!-- Menu Role BMM -->
+
+<!-- Menu Role BMM -->
             @if(auth()->user()->level=='bmm')
                 <li class="nav-item {{ Request::is('bmm') ? 'active' : '' }} pcoded-menu-caption">
                     <label>Menu Tabungan</label>
@@ -241,11 +281,10 @@
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('topikkajian.index') }}" class="">Topik Kajian</a></li>
                             <li class=""><a href="{{ route('kajian.index') }}" class="">Kajian</a></li>
+                            <li class=""><a href="https://drive.google.com/file/d/1EHG6Wi2_lxCuRXjkiH3uLSyFPzFYAE1h/view" target="_blank" class="">Kajian</a></li>
                         </ul>
                 </li>
-                <li class="nav-item {{ Request::segment(1) == 'dakwah' ? '' : '' }}">
-                    <a href="https://drive.google.com/file/d/1EHG6Wi2_lxCuRXjkiH3uLSyFPzFYAE1h/view" target="_blank" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Panduan </a>
-                </li>
+                
                 @endif
 
 
