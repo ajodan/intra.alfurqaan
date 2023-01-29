@@ -83,7 +83,7 @@ class KegiatanController extends Controller
             'jeniskegiatan_id' => 'required',
             'mubaligh_id' => 'required',
           //  'keg_kajian' => 'required',
-            'video_url' => 'required',
+           // 'video_url' => 'required',
             'keterangan' => 'required',
             'photo' => 'image|file|max:1024',
         ]);
