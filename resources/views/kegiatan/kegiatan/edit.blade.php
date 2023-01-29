@@ -85,7 +85,7 @@
                 <trix-editor input="keterangan" class="form-control"></trix-editor>
             </div>
         </div>
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label for="keg_kajian" class="">Dokumentasi Kajian</label>
             <div class="">
                 <select id="keg_kajian" name="keg_kajian" class="form-control @error('keg_kajian') is-invalid @enderror" value="{{ old('keg_kajian', $kegiatan->keg_kajian) }}">
@@ -93,7 +93,7 @@
                     <option value="N" {{ $kegiatan->keg_kajian == 'N' ? 'selected' : '' }}>Belum</option>
                 </select>
             </div>
-        </div> --}}
+        </div>
         <div class="form-group">
             <label for="name">Gambar <span class="required"></span></label>
             <input type="hidden" name="oldPhoto" value="{{ $kegiatan->photo }}">
