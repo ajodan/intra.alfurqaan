@@ -281,7 +281,7 @@
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{{ route('topikkajian.index') }}" class="">Topik Kajian</a></li>
                             <li class=""><a href="{{ route('kajian.index') }}" class="">Kajian</a></li>
-                            <li class=""><a href="https://drive.google.com/file/d/1EHG6Wi2_lxCuRXjkiH3uLSyFPzFYAE1h/view" target="_blank" class="">Kajian</a></li>
+                            <li class=""><a href="https://drive.google.com/file/d/1EHG6Wi2_lxCuRXjkiH3uLSyFPzFYAE1h/view" target="_blank" class="">Panduan Dakwah $ Ibadah</a></li>
                         </ul>
                 </li>
                 
@@ -313,7 +313,9 @@
                 <li class="nav-item {{ Request::is('user/change-password') ? 'active' : '' }}">
                     <a href="{{ route('user.change-password.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-unlock"></i></span><span class="pcoded-mtext">Ubah Password</span></a>
                 </li>
+                <li class=""><a href="https://drive.google.com/file/d/1Br216gfHN6qOrjFWVuorrv1k2uHksRpd/view" target="_blank" class="">Panduan Teknis</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
