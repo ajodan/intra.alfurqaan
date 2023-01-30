@@ -56,32 +56,24 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="mc" class="">MC</label>
-                <div class="">
-                    <select id="mc" name="mc" class="form-control">
-                        @foreach ($mubalighs as $ustadz)
-                            @if(old('mc') == $ustadz->id)
-                            <option value="{{ $ustadz->nm_lengkap }}" selected>{{ $ustadz->nm_lengkap }}</option>
-                            @else
-                            <option value="{{ $ustadz->nm_lengkap }}">{{ $ustadz->nm_lengkap }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
+                <label for="mc">MC</label>
+                <input type="text" class="form-control @error('mc') is-invalid @enderror" name="mc" id="mc" placeholder="Pembawa Acara" autofocus value="{{ old('mc') }}">
+                
+                @error('mc')
+                <div class="invalid-feedback">
+                    <p class="text-danger">{{ $message }}</p>
+                </div>    
+                @enderror          
             </div>
             <div class="form-group">
-                <label for="muadzin" class="">Muadzin</label>
-                <div class="">
-                    <select id="muadzin" name="muadzin" class="form-control">
-                        @foreach ($mubalighs as $ustadz)
-                            @if(old('muadzin') == $ustadz->id)
-                            <option value="{{ $ustadz->nm_lengkap }}" selected>{{ $ustadz->nm_lengkap }}</option>
-                            @else
-                            <option value="{{ $ustadz->nm_lengkap }}">{{ $ustadz->nm_lengkap }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
+                <label for="muadzin">Muadzin</label>
+                <input type="text" class="form-control @error('muadzin') is-invalid @enderror" name="muadzin" id="muadzin" placeholder="Muadzin" autofocus value="{{ old('muadzin') }}">
+                
+                @error('muadzin')
+                <div class="invalid-feedback">
+                    <p class="text-danger">{{ $message }}</p>
+                </div>    
+                @enderror          
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">Simpan</button>
