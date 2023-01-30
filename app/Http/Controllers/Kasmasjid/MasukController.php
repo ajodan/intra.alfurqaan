@@ -25,7 +25,7 @@ class MasukController extends Controller
     {
         $historiMasuk = Kasmasjid::join('jenis_transaksi', 'jenis_transaksi.id', '=', 'kasmasjid.jenistransaksi_id')
             ->where('jenis_transaksi.tipe_transaksi', 'masuk')
-            ->orderBy('kasmasjid.id', 'desc')
+            ->orderBy('kasmasjid.waktu', 'desc')
             ->get(['kasmasjid.*', 'jenis_transaksi.nm_jenis_transaksi']);
 
         return $historiMasuk;
