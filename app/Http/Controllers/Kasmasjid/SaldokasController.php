@@ -19,7 +19,7 @@ class SaldokasController extends Controller
     private function historiSaldo()
     {
         $saldokas = Kasmasjid::join('jenis_transaksi', 'jenis_transaksi.id', '=', 'kasmasjid.jenistransaksi_id')
-            ->orderBy('kasmasjid.waktu', 'DESC')
+            ->orderBy('kasmasjid.waktu', 'ASC')
             ->get(['kasmasjid.*', 'jenis_transaksi.nm_jenis_transaksi']);
 
         return $saldokas;

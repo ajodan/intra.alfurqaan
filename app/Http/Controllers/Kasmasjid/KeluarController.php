@@ -25,7 +25,7 @@ class KeluarController extends Controller
     {
         $historiKeluar = Kasmasjid::join('jenis_transaksi', 'jenis_transaksi.id', '=', 'kasmasjid.jenistransaksi_id')
             ->where('jenis_transaksi.tipe_transaksi', 'keluar')
-            ->orderBy('kasmasjid.waktu', 'desc')
+            ->orderBy('kasmasjid.id', 'desc')
             ->get(['kasmasjid.*', 'jenis_transaksi.nm_jenis_transaksi']);
 
         return $historiKeluar;
