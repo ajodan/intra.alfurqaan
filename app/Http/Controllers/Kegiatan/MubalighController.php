@@ -18,7 +18,9 @@ class MubalighController extends Controller
     {
         //$mubalighs = Mubaligh::get();
         $mubalighs = Mubaligh::join('peran_mubalighs', 'mubalighs.peranmubaligh_id', '=', 'peran_mubalighs.id')
-            ->select('mubalighs.*', 'peran_mubalighs.nm_peran')->get();
+            ->select('mubalighs.*', 'peran_mubalighs.nm_peran')
+            ->orderBy('mubalighs.id','desc')
+            ->get();
         return view('kegiatan.mubaligh.index', compact('mubalighs'));
     }
 

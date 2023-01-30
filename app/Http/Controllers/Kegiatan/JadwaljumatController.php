@@ -19,8 +19,8 @@ class JadwaljumatController extends Controller
 {
     public function index()
     {
-        $jadwaljumats = Jadwaljumat::get();
-        // $artikels = Artikel::join('kategoris', 'artikels.kategori_id', '=', 'kategoris.id')
+        $jadwaljumats = Jadwaljumat::orderBy('id', 'desc')->get();
+        // $jadwaljumats = Jadwaljumat::join('kategoris', 'artikels.kategori_id', '=', 'kategoris.id')
         //     ->select('artikels.*', 'kategoris.nm_kategori')->get();
         return view('kegiatan.jadwaljumat.index', compact('jadwaljumats'));
     }
