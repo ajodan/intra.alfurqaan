@@ -39,12 +39,20 @@ class MasukController extends Controller
             'jenistransaksi_id' => 'required',
         ]);
 
+
+       
+       
         if ($request->nominal_masuk > 0) {
+
             DB::transaction(function () use ($request) {
+            
+                $saldo = $request->saldo + $request->nominal_masuk;
+                $saldo = $saldo++;
                 DB::table('kasmasjid')->insert([
                     'waktu' => $request->waktu . ' ' . date('H:i:s'),
                     'nominal_masuk' => $request->nominal_masuk,
                     'nominal_keluar' => 0,
+                    'saldo' => $saldo,
                     'jenistransaksi_id' => $request->jenistransaksi_id,
                     'created_at' => Carbon::now(),
                     'created_by' => Auth::user()->name
